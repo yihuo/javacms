@@ -47,7 +47,7 @@ RUN apt-get install -y wget unzip \
 	&& rm -f $YIHUONET_MCMS_FILENAME \
     && cd $CATALINA_HOME/webapps \
 	&& mv manager management
-ADD ../tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
+ADD tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
 #########################################[END]!Recovery official code to deploy yihuonet code.
 WORKDIR $CATALINA_HOME
 
