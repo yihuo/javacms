@@ -1,15 +1,16 @@
 #Base Define
 FROM daocloud.io/library/java:7-jre
 MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
-ENV REFRESHED_AT 2016-01-28 13:51
+ENV REFRESHED_AT 2016-01-25 13:19
 
 #Version Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
-ENV YIHUONET_MCMS_SERIES general-3
-ENV YIHUONET_MCMS_VER 1.0.0
+ENV YIHUONET_MCMS_SERIES general-2
+ENV YIHUONET_MCMS_VER 1.0.1
 ENV YIHUONET_MCMS_FILENAME mcms-$YIHUONET_MCMS_SERIES-v$YIHUONET_MCMS_VER.zip
 ########################################
 # History  
-# 2015-01-28 v1.0.0 Based by General-1 dockerfile and final version
+# 2015-01-20 v0.1.0 Based by General-1 dockerfile
+# 2016-01-25 v1.0.0 Final version update
 ########################################
 ########################################
 #Official Code by docker-library, https://hub.docker.com/_/tomcat/
@@ -20,7 +21,7 @@ RUN mkdir -p "$CATALINA_HOME"
 WORKDIR $CATALINA_HOME
 
 ENV TOMCAT_MAJOR 7
-ENV TOMCAT_VERSION 7.0.67
+ENV TOMCAT_VERSION 7.0.68
 ENV TOMCAT_TGZ_URL http://mirrors.aliyun.com/apache/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
 RUN set -x \
@@ -44,7 +45,7 @@ RUN apt-get install -y wget unzip \
 	&& rm -f $YIHUONET_MCMS_FILENAME \
     && cd $CATALINA_HOME/webapps \
 	&& mv manager management
-ADD tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
+ADD ../tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
 #########################################[END]!Recovery official code to deploy yihuonet code.
 WORKDIR $CATALINA_HOME
 
