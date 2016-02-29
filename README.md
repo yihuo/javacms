@@ -36,7 +36,8 @@
 `MYSQL_PASSWORD`  MYSQL_USER的密码（可选）。    
 ##2.卷    
 请按如下格式设置Volume值，以确保MySQL数据文件被存放在宿主机；以及在创建应用时自动生成初始化数据库。    
-并将.sql文件存放于宿主机/data/[$Your_app_name]/mysql-init目录。
+并将.sql文件存放于宿主机/data/[$Your_app_name]/mysql-init目录。    
+
 | 容器路径 | 主机路径 |
 |:-------:|:-------:|
 |/var/lib/mysql|/data/[$Your_app_name]/mysql|
