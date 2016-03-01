@@ -8,6 +8,7 @@ ENV REFRESHED_AT 2016-01-28 13:27
 # 2016-02-27 v0.0.1 First Version
 ########################################
 ADD script/ /docker-entrypoint-initdb.d/
+ADD conf/ /etc/mysql/conf.d/
 #MySQL passwd and port
 ENV MYSQL_ROOT_PASSWORD my-secret-pw
 ENV MYSQL_DATABASE mcms
