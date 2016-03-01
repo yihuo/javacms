@@ -7,7 +7,16 @@ ENV REFRESHED_AT 2016-01-28 13:27
 # History  
 # 2016-02-27 v0.0.1 First Version
 ########################################
+#Add UTF-8 Support
+RUN { \
+    echo '[mysqld]'; \
+    echo 'character-set-server = utf8'; \
+    echo 'default-collation = utf8_unicode_ci'; \
+} > /etc/mysql/conf.d/charset.cnf
+
+#Import scripts in here
 ADD script/ /docker-entrypoint-initdb.d/
+
 #MySQL passwd and port
 ENV MYSQL_ROOT_PASSWORD my-secret-pw
 ENV MYSQL_DATABASE mcms
