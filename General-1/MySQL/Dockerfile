@@ -9,10 +9,12 @@ ENV REFRESHED_AT 2016-01-28 13:27
 ########################################
 #Add UTF-8 Support
 RUN { \
-    echo '[mysqld]'; \
-    echo 'character-set-server = utf8'; \
-    echo 'default-collation = utf8_unicode_ci'; \
-} > /etc/mysql/conf.d/charset.cnf
+      echo '[mysqld]'; \
+      echo 'character-set-server=utf8'; \
+      echo 'collation-server=utf8_general_ci'; \
+      echo '[client]'; \
+      echo 'default-character-set=utf8'; \
+    } > /etc/mysql/conf.d/charset.cnf
 
 #Import scripts in here
 ADD script/ /docker-entrypoint-initdb.d/
