@@ -12,6 +12,11 @@ File Encoding         : 65001
 
 Date: 2016-01-20 17:26:49
 */
+SET character_set_client = utf8 ; 
+SET character_set_connection = utf8 ;   
+SET character_set_database = utf8 ;     
+SET character_set_server = utf8 ;     
+
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
