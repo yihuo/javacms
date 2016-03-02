@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50096
-Source Host           : localhost:3306
-Source Database       : javacms
+Source Server         : general-2
+Source Server Version : 50154
+Source Host           : localhost:3309
+Source Database       : general-1
 
 Target Server Type    : MYSQL
-Target Server Version : 50096
+Target Server Version : 50154
 File Encoding         : 65001
 
-Date: 2016-01-20 17:26:49
+Date: 2016-02-04 13:18:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,78 +19,68 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `app`;
 CREATE TABLE `app` (
-  `APP_ID` int(22) NOT NULL auto_increment COMMENT '站点ID，关联基础表BasicId',
+  `APP_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '站点ID，关联基础表BasicId',
   `APP_NAME` varchar(60) NOT NULL COMMENT '站点名称',
   `APP_URL` varchar(200) NOT NULL COMMENT '站点域名',
-  `APP_LOGO` varchar(120) default NULL COMMENT '站点LOGO',
-  `APP_KEYWORD` varchar(1000) default NULL COMMENT '站点关键字',
-  `APP_COPYRIGHT` varchar(1000) default NULL COMMENT '站点版权信息',
-  `APP_STYLE` varchar(50) default NULL COMMENT '站点风格',
-  `APP_MANAGERID` int(11) default NULL COMMENT '站点管理员ID',
-  `APP_DESCRIPTION` varchar(1000) default NULL COMMENT '站点描述',
-  `APP_DATETIME` datetime default NULL COMMENT '应用发布日期',
-  `APP_MOBILE_STYLE` varchar(11) default NULL COMMENT '应用移动端风格',
-  `APP_PAY_DATE` datetime default NULL COMMENT '应用续费时间',
-  `APP_PAY` varchar(45) default NULL COMMENT '费用清单',
-  PRIMARY KEY  (`APP_ID`)
+  `APP_LOGO` varchar(120) DEFAULT NULL COMMENT '站点LOGO',
+  `APP_KEYWORD` varchar(1000) DEFAULT NULL COMMENT '站点关键字',
+  `APP_COPYRIGHT` varchar(1000) DEFAULT NULL COMMENT '站点版权信息',
+  `APP_STYLE` varchar(50) DEFAULT NULL COMMENT '站点风格',
+  `APP_MANAGERID` int(11) DEFAULT NULL COMMENT '站点管理员ID',
+  `APP_DESCRIPTION` varchar(1000) DEFAULT NULL COMMENT '站点描述',
+  `APP_DATETIME` datetime DEFAULT NULL COMMENT '应用发布日期',
+  `APP_MOBILE_STYLE` varchar(11) DEFAULT NULL COMMENT '应用移动端风格',
+  `APP_PAY_DATE` datetime DEFAULT NULL COMMENT '应用续费时间',
+  `APP_PAY` varchar(45) DEFAULT NULL COMMENT '费用清单',
+  PRIMARY KEY (`APP_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1550 DEFAULT CHARSET=utf8 COMMENT='应用表';
 
 -- ----------------------------
 -- Records of app
 -- ----------------------------
-INSERT INTO `app` VALUES ('1549', '安徽易活网络技术有限公司', 'http://10.0.0.223:8080', '', '安徽易活网络有限公司', 'support by tzq', 'cmb1', '50', '安徽易活网络有限公司', null, 'm', null, '');
+INSERT INTO `app` VALUES ('1549', '安徽易活网络技术有限公司', 'http://localhost:8181', '/upload/app/1549/1454483445306.jpg', '安徽易活网络有限公司', 'support by tzq', 'general-1', '50', '安徽易活网络有限公司', null, 'm', null, '');
 
 -- ----------------------------
 -- Table structure for `basic`
 -- ----------------------------
 DROP TABLE IF EXISTS `basic`;
 CREATE TABLE `basic` (
-  `BASIC_ID` int(11) NOT NULL auto_increment COMMENT '自增长ID',
-  `BASIC_TITLE` varchar(300) default NULL COMMENT '标题',
+  `BASIC_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
+  `BASIC_TITLE` varchar(300) DEFAULT NULL COMMENT '标题',
   `BASIC_DESCRIPTION` text COMMENT '描述',
-  `BASIC_THUMBNAILS` varchar(1000) default NULL COMMENT '缩略图',
-  `BASIC_HIT` bigint(22) default NULL COMMENT '点击次数',
-  `BASIC_SORT` int(11) default NULL COMMENT '排序',
-  `BASIC_DATETIME` datetime default NULL COMMENT ' 发布时间',
-  `BASIC_UPDATETIME` datetime default NULL COMMENT '更新时间',
-  `BASIC_PEOPLEID` int(22) default NULL COMMENT '用户编号',
-  `BASIC_CATEGORYID` int(22) default NULL COMMENT '所属分类编号',
-  `BASIC_APPID` int(11) default NULL COMMENT '应用编号',
-  `BASIC_MODELID` int(11) default NULL COMMENT '模块编号',
-  PRIMARY KEY  (`BASIC_ID`),
+  `BASIC_THUMBNAILS` varchar(1000) DEFAULT NULL COMMENT '缩略图',
+  `BASIC_HIT` bigint(22) DEFAULT NULL COMMENT '点击次数',
+  `BASIC_SORT` int(11) DEFAULT NULL COMMENT '排序',
+  `BASIC_DATETIME` datetime DEFAULT NULL COMMENT ' 发布时间',
+  `BASIC_UPDATETIME` datetime DEFAULT NULL COMMENT '更新时间',
+  `BASIC_PEOPLEID` int(22) DEFAULT NULL COMMENT '用户编号',
+  `BASIC_CATEGORYID` int(22) DEFAULT NULL COMMENT '所属分类编号',
+  `BASIC_APPID` int(11) DEFAULT NULL COMMENT '应用编号',
+  `BASIC_MODELID` int(11) DEFAULT NULL COMMENT '模块编号',
+  PRIMARY KEY (`BASIC_ID`),
   UNIQUE KEY `SYS_C009068` (`BASIC_ID`),
   KEY `BASIC_TITLE` (`BASIC_TITLE`(255)),
-  KEY `BASIC_APPID` USING BTREE (`BASIC_APPID`),
-  KEY `BASIC_MODELID` USING BTREE (`BASIC_MODELID`),
-  KEY `BASIC_CATEGORYID` USING BTREE (`BASIC_CATEGORYID`),
-  KEY `BASIC_DATETIME` USING BTREE (`BASIC_DATETIME`)
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8 COMMENT='基础表';
+  KEY `BASIC_APPID` (`BASIC_APPID`) USING BTREE,
+  KEY `BASIC_MODELID` (`BASIC_MODELID`) USING BTREE,
+  KEY `BASIC_CATEGORYID` (`BASIC_CATEGORYID`) USING BTREE,
+  KEY `BASIC_DATETIME` (`BASIC_DATETIME`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8 COMMENT='基础表';
 
 -- ----------------------------
 -- Records of basic
 -- ----------------------------
-INSERT INTO `basic` VALUES ('116', '产品2-1', '', '/upload/article/1549/1453257950159.jpg', '0', '1', '2016-01-12 15:05:21', '2016-01-20 10:45:50', '0', '106', '1549', '8');
-INSERT INTO `basic` VALUES ('117', '产品2-2', '', '/upload/article/1549/1453257617124.jpg', '0', '8', '2016-01-12 15:05:39', '2016-01-20 10:40:17', '0', '106', '1549', '8');
-INSERT INTO `basic` VALUES ('118', '产品2-3', '', '/upload/article/1549/1453257627817.jpg', '0', '7', '2016-01-12 15:05:52', '2016-01-20 10:40:28', '0', '106', '1549', '8');
 INSERT INTO `basic` VALUES ('119', '产品3-1', '', '/upload/article/1549/1453257937847.jpg', '0', '6', '2016-01-12 15:08:45', '2016-01-20 10:45:38', '0', '107', '1549', '8');
 INSERT INTO `basic` VALUES ('120', '好吃的拌面5', '', '/upload/article/1549/1453257924933.jpg', '0', '5', '2016-01-12 15:08:59', '2016-01-20 10:45:25', '0', '107', '1549', '8');
 INSERT INTO `basic` VALUES ('121', '好吃的拌面4', '', '/upload/article/1549/1453257912968.jpg', '0', '4', '2016-01-12 15:09:10', '2016-01-20 10:45:13', '0', '107', '1549', '8');
 INSERT INTO `basic` VALUES ('122', '好吃的拌面3', '', '/upload/article/1549/1453257902791.jpg', '0', '3', '2016-01-12 15:16:17', '2016-01-20 10:45:03', '0', '108', '1549', '8');
 INSERT INTO `basic` VALUES ('123', '产品名称2', '', '/upload/article/1549/1453174714778.jpg', '0', '10', '2016-01-12 15:16:32', '2016-01-19 11:38:36', '0', '108', '1549', '8');
 INSERT INTO `basic` VALUES ('124', '产品名称1', '', '/upload/article/1549/1453257596045.jpg', '0', '9', '2016-01-12 15:17:22', '2016-01-20 10:39:57', '0', '108', '1549', '8');
-INSERT INTO `basic` VALUES ('137', '新闻1-1', '新闻1-1', '/upload/article/1549/1453091770414.jpg', '0', '0', '2016-01-12 16:00:41', '2016-01-18 14:31:44', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('138', '新闻1-2', '新闻1-2', '/upload/article/1549/1453091764543.jpg', '0', '0', '2016-01-12 16:00:56', '2016-01-18 14:31:37', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('139', '新闻1-3', '新闻1-3', '/upload/article/1549/1453091755164.jpg', '0', '0', '2016-01-12 16:01:07', '2016-01-18 14:31:30', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('140', '新闻1-4', '新闻1-4', '/upload/article/1549/1453257776884.jpg', '0', '0', '2016-01-12 16:01:56', '2016-01-20 10:42:57', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('141', '博物馆趣事', '新闻2-1', '/upload/article/1549/1453257784648.jpg', '0', '0', '2016-01-12 16:02:09', '2016-01-20 10:43:05', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('143', '沟通新闻', '新闻i2-3', '/upload/article/1549/1453257759997.jpg', '0', '0', '2016-01-12 16:02:34', '2016-01-20 10:42:41', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('144', '大桥新闻', '新闻2-4', '/upload/article/1549/1453257744890.jpg', '0', '0', '2016-01-12 16:02:46', '2016-01-20 10:42:25', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('145', '幻灯片1', '喂喂喂喂喂喂', '/upload/article/1549/1453183776995.jpg', '0', '0', '2016-01-12 16:33:42', '2016-01-19 14:09:38', '0', '115', '1549', '8');
+INSERT INTO `basic` VALUES ('145', '幻灯片1', '喂喂喂喂喂喂', '/upload/article/1549/1454485836193.jpg', '0', '0', '2016-01-12 16:33:42', '2016-02-03 15:50:37', '0', '115', '1549', '8');
 INSERT INTO `basic` VALUES ('148', '幻灯片2', '', '/upload/article/1549/1453106777839.jpg', '0', '0', '2016-01-12 16:52:22', '2016-01-19 10:14:28', '0', '116', '1549', '8');
 INSERT INTO `basic` VALUES ('149', '幻灯片', 'erereweew', '/upload/article/1549/1453106919632.jpg', '0', '0', '2016-01-12 16:53:01', '2016-01-19 09:34:27', '0', '117', '1549', '8');
-INSERT INTO `basic` VALUES ('150', '主营业务3', '', '', '0', '0', '2016-01-12 17:08:49', '2016-01-15 15:20:15', '0', '118', '1549', '8');
-INSERT INTO `basic` VALUES ('151', '主营业务2', '', '', '0', '0', '2016-01-12 17:09:04', '2016-01-15 15:20:01', '0', '118', '1549', '8');
-INSERT INTO `basic` VALUES ('152', '主营业务1', '', '/upload/article/1549/1453107261545.jpg', '0', '0', '2016-01-12 17:09:26', '2016-01-18 16:54:22', '0', '118', '1549', '8');
+INSERT INTO `basic` VALUES ('150', '网站托管', '', '', '0', '0', '2016-01-12 17:08:49', '2016-02-03 15:55:20', '0', '118', '1549', '8');
+INSERT INTO `basic` VALUES ('151', '软件开发', '', '', '0', '0', '2016-01-12 17:09:04', '2016-02-03 15:54:05', '0', '118', '1549', '8');
+INSERT INTO `basic` VALUES ('152', '0元建站', '', '/upload/article/1549/1453107261545.jpg', '0', '0', '2016-01-12 17:09:26', '2016-02-03 15:53:46', '0', '118', '1549', '8');
 INSERT INTO `basic` VALUES ('153', '产品1', '', '/upload/article/1549/1452673060242.jpg', '0', '0', '2016-01-12 17:14:50', '2016-01-13 16:17:41', '0', '119', '1549', '8');
 INSERT INTO `basic` VALUES ('154', '产品2', '', '/upload/article/1549/1452673053503.jpg', '0', '0', '2016-01-12 17:15:08', '2016-01-13 16:17:34', '0', '119', '1549', '8');
 INSERT INTO `basic` VALUES ('155', '产品3', '', '/upload/article/1549/1452673046107.jpg', '0', '0', '2016-01-12 17:15:16', '2016-01-13 16:17:26', '0', '119', '1549', '8');
@@ -99,51 +89,57 @@ INSERT INTO `basic` VALUES ('157', '公司介绍', '', '/upload/article/1549/145
 INSERT INTO `basic` VALUES ('158', '腾讯', '', '/upload/article/1549/1453186963403.jpg', '0', '0', '2016-01-13 15:24:38', '2016-01-19 15:02:44', '0', '122', '1549', '8');
 INSERT INTO `basic` VALUES ('159', '阿里', '', '/upload/article/1549/1453186952736.jpg', '0', '0', '2016-01-13 15:24:56', '2016-01-19 15:02:33', '0', '122', '1549', '8');
 INSERT INTO `basic` VALUES ('160', '360', '', '/upload/article/1549/1453186942759.jpg', '0', '0', '2016-01-13 15:25:08', '2016-01-19 15:02:23', '0', '122', '1549', '8');
-INSERT INTO `basic` VALUES ('161', '幻灯片1', '', '/upload/article/1549/1453258418248.jpg', '0', '0', '2016-01-13 15:44:07', '2016-01-20 10:53:39', '0', '123', '1549', '8');
-INSERT INTO `basic` VALUES ('162', '幻灯片2', '', '/upload/article/1549/1453258405730.jpg', '0', '0', '2016-01-13 15:44:21', '2016-01-20 10:53:26', '0', '123', '1549', '8');
-INSERT INTO `basic` VALUES ('163', '幻灯片3', '', '/upload/article/1549/1453258398633.jpg', '0', '0', '2016-01-13 15:44:41', '2016-01-20 10:53:19', '0', '123', '1549', '8');
-INSERT INTO `basic` VALUES ('164', '文字描述', '', '', '0', '0', '2016-01-13 15:45:21', '2016-01-18 10:26:07', '0', '124', '1549', '8');
-INSERT INTO `basic` VALUES ('165', '幻灯片1', '', '/upload/article/1549/1453258227963.jpg', '0', '0', '2016-01-13 15:48:34', '2016-01-20 10:50:58', '0', '125', '1549', '8');
-INSERT INTO `basic` VALUES ('170', '该in北方四', '11111', '/upload/article/1549/1453258166092.jpg', '0', '0', '2016-01-13 15:55:00', '2016-01-20 10:49:26', '0', '127', '1549', '8');
-INSERT INTO `basic` VALUES ('171', '1', '', '/upload/article/1549/1453258113338.jpg', '0', '0', '2016-01-14 14:53:04', '2016-01-20 10:48:34', '0', '126', '1549', '8');
-INSERT INTO `basic` VALUES ('172', '2', '', '/upload/article/1549/1453258103227.jpg', '0', '0', '2016-01-14 14:53:12', '2016-01-20 10:48:27', '0', '126', '1549', '8');
-INSERT INTO `basic` VALUES ('173', '3', '', '/upload/article/1549/1453258095397.jpg', '0', '0', '2016-01-14 14:53:18', '2016-01-20 10:48:16', '0', '126', '1549', '8');
-INSERT INTO `basic` VALUES ('174', '4', '', '/upload/article/1549/1453258086867.jpg', '0', '0', '2016-01-14 14:53:26', '2016-01-20 10:48:07', '0', '126', '1549', '8');
-INSERT INTO `basic` VALUES ('175', '5', '', '/upload/article/1549/1453258079209.jpg', '0', '0', '2016-01-14 14:53:36', '2016-01-20 10:48:00', '0', '126', '1549', '8');
-INSERT INTO `basic` VALUES ('176', '1', '', '/upload/article/1549/1453258157777.jpg', '0', '0', '2016-01-14 14:56:16', '2016-01-20 10:49:18', '0', '127', '1549', '8');
-INSERT INTO `basic` VALUES ('177', '2', '', '/upload/article/1549/1453258149292.jpg', '0', '0', '2016-01-14 14:56:25', '2016-01-20 10:49:10', '0', '127', '1549', '8');
-INSERT INTO `basic` VALUES ('178', '3', '', '/upload/article/1549/1453258139520.jpg', '0', '0', '2016-01-14 14:56:32', '2016-01-20 10:49:00', '0', '127', '1549', '8');
-INSERT INTO `basic` VALUES ('179', '4', '', '/upload/article/1549/1453258131793.jpg', '0', '0', '2016-01-14 14:56:39', '2016-01-20 10:48:52', '0', '127', '1549', '8');
-INSERT INTO `basic` VALUES ('180', '王强', '这个人是个神经病~~哈哈nidxededfehidewjhi德基德基的的湖世界第五集死亡湖俗话呼 大小和武器和对话uh的湖饿得慌。', '/upload/article/1549/1453258124512.jpg', '0', '0', '2016-01-14 14:56:46', '2016-01-20 10:48:45', '0', '127', '1549', '8');
+INSERT INTO `basic` VALUES ('161', '幻灯片1', '', '/upload/article/1549/1454493290156.png', '0', '0', '2016-01-13 15:44:07', '2016-02-03 17:54:51', '0', '123', '1549', '8');
+INSERT INTO `basic` VALUES ('162', '幻灯片2', '', '/upload/article/1549/1454493282810.png', '0', '0', '2016-01-13 15:44:21', '2016-02-03 17:54:43', '0', '123', '1549', '8');
+INSERT INTO `basic` VALUES ('163', '幻灯片3', '', '/upload/article/1549/1454493274281.png', '0', '0', '2016-01-13 15:44:41', '2016-02-03 17:54:35', '0', '123', '1549', '8');
+INSERT INTO `basic` VALUES ('164', '文字描述', '', '', '0', '0', '2016-01-13 15:45:21', '2016-02-03 17:55:15', '0', '124', '1549', '8');
+INSERT INTO `basic` VALUES ('165', '幻灯片1', '', '/upload/article/1549/1454490651722.png', '0', '0', '2016-01-13 15:48:34', '2016-02-03 17:15:59', '0', '125', '1549', '8');
+INSERT INTO `basic` VALUES ('171', '团队活动1', '', '/upload/article/1549/1454553395616.png', '0', '0', '2016-01-14 14:53:04', '2016-02-04 10:36:36', '0', '126', '1549', '8');
+INSERT INTO `basic` VALUES ('172', '团队活动2', '', '/upload/article/1549/1454553407189.png', '0', '0', '2016-01-14 14:53:12', '2016-02-04 10:36:48', '0', '126', '1549', '8');
+INSERT INTO `basic` VALUES ('173', '团队活动3', '', '/upload/article/1549/1454553417717.png', '0', '0', '2016-01-14 14:53:18', '2016-02-04 10:36:58', '0', '126', '1549', '8');
+INSERT INTO `basic` VALUES ('174', '团队活动4', '', '/upload/article/1549/1454553437623.png', '0', '0', '2016-01-14 14:53:26', '2016-02-04 10:37:18', '0', '126', '1549', '8');
+INSERT INTO `basic` VALUES ('175', '团队活动5', '', '/upload/article/1549/1454553448950.png', '0', '0', '2016-01-14 14:53:36', '2016-02-04 10:37:29', '0', '126', '1549', '8');
 INSERT INTO `basic` VALUES ('181', '合作公司4', '', '/upload/article/1549/1453187024323.jpg', '0', '0', '2016-01-18 09:49:57', '2016-01-19 15:04:16', '0', '122', '1549', '8');
-INSERT INTO `basic` VALUES ('182', '倪贝芬新闻', '', '/upload/article/1549/1453257734444.jpg', '0', '10', '2016-01-18 10:14:40', '2016-01-20 10:42:15', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('183', '滕志强', '666', '/upload/article/1549/1453257686883.jpg', '0', '0', '2016-01-18 10:17:30', '2016-01-20 10:41:27', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('184', '19号的新闻', '', '/upload/article/1549/1453172342112.jpg', '0', '0', '2016-01-19 10:56:02', '2016-01-19 10:59:03', '0', '109', '1549', '8');
-INSERT INTO `basic` VALUES ('185', '产品2-4', '', '/upload/article/1549/1453173313016.jpg', '0', '0', '2016-01-19 11:14:06', '2016-01-19 11:15:14', '0', '106', '1549', '8');
 INSERT INTO `basic` VALUES ('186', '1', '', '/upload/article/1549/1453173722477.jpg', '0', '0', '2016-01-19 11:22:03', '2016-01-20 11:46:09', '0', '108', '1549', '8');
 INSERT INTO `basic` VALUES ('187', '2', '', '/upload/article/1549/1453173733820.jpg', '0', '0', '2016-01-19 11:22:14', '2016-01-19 11:22:14', '0', '108', '1549', '8');
 INSERT INTO `basic` VALUES ('188', '4', '', '/upload/article/1549/1453173744175.jpg', '0', '0', '2016-01-19 11:22:25', '2016-01-19 11:22:25', '0', '108', '1549', '8');
-INSERT INTO `basic` VALUES ('189', '2', '', '/upload/article/1549/1453183768792.jpg', '0', '0', '2016-01-19 11:50:21', '2016-01-19 14:09:29', '0', '115', '1549', '8');
-INSERT INTO `basic` VALUES ('190', '3', '', '/upload/article/1549/1453183845679.jpg', '0', '0', '2016-01-19 11:50:31', '2016-01-19 14:10:46', '0', '115', '1549', '8');
+INSERT INTO `basic` VALUES ('189', '2', '', '/upload/article/1549/1454485827620.jpg', '0', '0', '2016-01-19 11:50:21', '2016-02-03 15:50:28', '0', '115', '1549', '8');
+INSERT INTO `basic` VALUES ('190', '3', '', '/upload/article/1549/1454485818833.jpg', '0', '0', '2016-01-19 11:50:31', '2016-02-03 15:50:20', '0', '115', '1549', '8');
 INSERT INTO `basic` VALUES ('191', '公司地址', '', '/upload/article/1549/1453278501611.png', '0', '0', '2016-01-20 16:28:28', '2016-01-20 16:33:59', '0', '129', '1549', '8');
 INSERT INTO `basic` VALUES ('197', '地址.', '', '', '0', '0', '2016-01-20 16:41:39', '2016-01-20 16:41:39', '0', '131', '1549', '8');
-INSERT INTO `basic` VALUES ('198', '联系我们.', '', '/upload/article/1549/1453279765218.png', '0', '0', '2016-01-20 16:50:23', '2016-01-20 17:06:02', '0', '113', '1549', '8');
-INSERT INTO `basic` VALUES ('199', '底部公司信息', '', '/upload/article/1549/1453281402894.png', '0', '0', '2016-01-20 17:12:49', '2016-01-20 17:16:44', '0', '132', '1549', '8');
+INSERT INTO `basic` VALUES ('198', '联系我们.', '', '/upload/article/1549/1453279765218.png', '0', '0', '2016-01-20 16:50:23', '2016-02-04 11:35:55', '0', '113', '1549', '8');
+INSERT INTO `basic` VALUES ('199', '底部公司信息', '', '/upload/article/1549/1453281402894.png', '0', '0', '2016-01-20 17:12:49', '2016-02-04 11:34:07', '0', '132', '1549', '8');
 INSERT INTO `basic` VALUES ('200', 'logo', '', '/upload/article/1549/1453281753859.png', '0', '0', '2016-01-20 17:22:38', '2016-01-20 17:22:38', '0', '133', '1549', '8');
+INSERT INTO `basic` VALUES ('201', '0元建站', '', '/upload/article/1549/1454488498930.png', '0', '0', '2016-02-03 16:01:39', '2016-02-03 16:35:00', '0', '105', '1549', '8');
+INSERT INTO `basic` VALUES ('202', '软件开发', '', '/upload/article/1549/1454488488034.png', '0', '0', '2016-02-03 16:18:42', '2016-02-03 16:34:49', '0', '105', '1549', '8');
+INSERT INTO `basic` VALUES ('203', '网站托管', '', '/upload/article/1549/1454488478629.png', '0', '0', '2016-02-03 16:18:58', '2016-02-03 16:34:39', '0', '105', '1549', '8');
+INSERT INTO `basic` VALUES ('204', '设计服务', '', '/upload/article/1549/1454488539364.png', '0', '0', '2016-02-03 16:19:15', '2016-02-03 16:35:40', '0', '106', '1549', '8');
+INSERT INTO `basic` VALUES ('205', '网络推广', '', '/upload/article/1549/1454488531458.png', '0', '0', '2016-02-03 16:19:33', '2016-02-03 16:35:32', '0', '106', '1549', '8');
+INSERT INTO `basic` VALUES ('206', '域名申请', '', '/upload/article/1549/1454488520431.png', '0', '0', '2016-02-03 16:22:10', '2016-02-03 16:35:24', '0', '106', '1549', '8');
+INSERT INTO `basic` VALUES ('207', '主机租用', '', '/upload/article/1549/1454488511018.png', '0', '0', '2016-02-03 16:22:24', '2016-02-03 16:35:11', '0', '106', '1549', '8');
+INSERT INTO `basic` VALUES ('208', '全球科技企业财报新惊喜：云服务高速增长', '', '/upload/article/1549/1454491337943.png', '0', '0', '2016-02-03 17:23:25', '2016-02-03 17:24:45', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('209', '2015死掉的创业公司 可能犯了这些错误', '', '/upload/article/1549/1454492063984.png', '0', '0', '2016-02-03 17:34:25', '2016-02-03 17:34:25', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('210', '传微软2.5亿美元收购手机输入法SwiftKey', '', '/upload/article/1549/1454492128264.png', '0', '0', '2016-02-03 17:35:38', '2016-02-03 17:35:38', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('211', '亚马逊将开设约400家实体书店', '', '/upload/article/1549/1454492184611.png', '0', '0', '2016-02-03 17:36:35', '2016-02-03 17:36:35', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('212', 'Uber推出全新应用图标：公司CEO参与设计', '', '/upload/article/1549/1454492890329.png', '0', '0', '2016-02-03 17:39:55', '2016-02-03 17:48:11', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('213', '谷歌母公司Alphabet反超苹果 市值全球第一', '', '/upload/article/1549/1454492524714.png', '0', '0', '2016-02-03 17:41:08', '2016-02-03 17:42:05', '0', '109', '1549', '8');
+INSERT INTO `basic` VALUES ('214', '团队活动6', '', '/upload/article/1549/1454553458966.png', '0', '0', '2016-02-04 10:37:40', '2016-02-04 10:37:40', '0', '126', '1549', '8');
+INSERT INTO `basic` VALUES ('215', '团队介绍1', '擅长Ai、Fw、Fl、Br、Ae、Pr、Id、Ps等软件的安装与卸载，精通CSS、JavaScript、PHP、ASP、C、C＋＋、C#、Java、Ruby、Perl、Lisp、python、Objective-C、ActionScript、Pascal等单词的拼写，熟悉Windows、Linux、Mac、Android、IOS、WP8等系统的开关机', '/upload/article/1549/1454555235044.png', '0', '1', '2016-02-04 10:55:06', '2016-02-04 11:07:16', '0', '127', '1549', '8');
+INSERT INTO `basic` VALUES ('216', '团队介绍2', '', '/upload/article/1549/1454556221577.png', '0', '0', '2016-02-04 11:23:49', '2016-02-04 11:23:49', '0', '127', '1549', '8');
 
 -- ----------------------------
 -- Table structure for `basic_attention`
 -- ----------------------------
 DROP TABLE IF EXISTS `basic_attention`;
 CREATE TABLE `basic_attention` (
-  `ba_id` int(11) NOT NULL auto_increment COMMENT '自增长ID',
-  `ba_peopleID` int(11) default NULL COMMENT '用户id',
-  `ba_appID` int(11) default NULL COMMENT '用户应用id',
-  `ba_basicID` int(11) default NULL COMMENT '用户收藏关联的基础id',
-  `ba_type` int(11) default NULL COMMENT '收藏类型 1： 收藏  2：顶',
-  `ba_datetime` datetime default NULL COMMENT '用户收藏文章，帖子或商品时的时间',
-  `ba_url` varchar(200) default NULL COMMENT '收藏的文章,帖子，商品的链接地址',
-  PRIMARY KEY  (`ba_id`),
+  `ba_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
+  `ba_peopleID` int(11) DEFAULT NULL COMMENT '用户id',
+  `ba_appID` int(11) DEFAULT NULL COMMENT '用户应用id',
+  `ba_basicID` int(11) DEFAULT NULL COMMENT '用户收藏关联的基础id',
+  `ba_type` int(11) DEFAULT NULL COMMENT '收藏类型 1： 收藏  2：顶',
+  `ba_datetime` datetime DEFAULT NULL COMMENT '用户收藏文章，帖子或商品时的时间',
+  `ba_url` varchar(200) DEFAULT NULL COMMENT '收藏的文章,帖子，商品的链接地址',
+  PRIMARY KEY (`ba_id`),
   KEY `BA_PEOPLEID` (`ba_peopleID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户收藏表';
 
@@ -175,17 +171,17 @@ CREATE TABLE `basic_category` (
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `CATEGORY_ID` int(22) NOT NULL auto_increment COMMENT '类别ID',
-  `CATEGORY_TITLE` varchar(50) default NULL COMMENT '类别标题',
-  `CATEGORY_SORT` int(10) default NULL COMMENT '类别排序',
-  `CATEGORY_DATETIME` datetime default NULL COMMENT '类别发布时间',
-  `CATEGORY_MANAGERID` int(22) default NULL COMMENT '发布用户ID',
-  `CATEGORY_MODELID` int(11) default NULL COMMENT '所属模块ID',
-  `CATEGORY_CATEGORYID` int(22) default NULL COMMENT '父类别编号',
-  `CATEGORY_SMALLIMG` varchar(120) default NULL COMMENT '缩略图',
-  `CATEGORY_APPID` int(11) default NULL COMMENT '应用编号',
-  `CATEGORY_DESCRIPTION` varchar(45) default NULL COMMENT '栏目描述',
-  PRIMARY KEY  (`CATEGORY_ID`),
+  `CATEGORY_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '类别ID',
+  `CATEGORY_TITLE` varchar(50) DEFAULT NULL COMMENT '类别标题',
+  `CATEGORY_SORT` int(10) DEFAULT NULL COMMENT '类别排序',
+  `CATEGORY_DATETIME` datetime DEFAULT NULL COMMENT '类别发布时间',
+  `CATEGORY_MANAGERID` int(22) DEFAULT NULL COMMENT '发布用户ID',
+  `CATEGORY_MODELID` int(11) DEFAULT NULL COMMENT '所属模块ID',
+  `CATEGORY_CATEGORYID` int(22) DEFAULT NULL COMMENT '父类别编号',
+  `CATEGORY_SMALLIMG` varchar(120) DEFAULT NULL COMMENT '缩略图',
+  `CATEGORY_APPID` int(11) DEFAULT NULL COMMENT '应用编号',
+  `CATEGORY_DESCRIPTION` varchar(45) DEFAULT NULL COMMENT '栏目描述',
+  PRIMARY KEY (`CATEGORY_ID`),
   KEY `CATEGORY_APPID` (`CATEGORY_APPID`),
   KEY `CATEGORY_MANAGERID` (`CATEGORY_MANAGERID`),
   KEY `CATEGORY_MODELID` (`CATEGORY_MODELID`),
@@ -197,10 +193,8 @@ CREATE TABLE `category` (
 -- ----------------------------
 INSERT INTO `category` VALUES ('103', '公司介绍', '2', '2016-01-12 10:54:01', '50', '7', '128', null, '1549', null);
 INSERT INTO `category` VALUES ('104', '产品中心', '4', '2016-01-12 14:49:05', '50', '7', '128', null, '1549', null);
-INSERT INTO `category` VALUES ('105', '产品类型1', '4', '2016-01-12 14:53:26', '50', '7', '104', null, '1549', null);
-INSERT INTO `category` VALUES ('106', '产品类型2', '3', '2016-01-12 15:04:58', '50', '7', '104', null, '1549', null);
-INSERT INTO `category` VALUES ('107', '产品类型3', '2', '2016-01-12 15:08:28', '50', '7', '104', null, '1549', null);
-INSERT INTO `category` VALUES ('108', '产品类型4', '1', '2016-01-12 15:15:31', '50', '7', '104', null, '1549', null);
+INSERT INTO `category` VALUES ('105', '明星产品', '4', '2016-01-12 14:53:26', '50', '7', '104', null, '1549', null);
+INSERT INTO `category` VALUES ('106', '实用产品', '3', '2016-01-12 15:04:58', '50', '7', '104', null, '1549', null);
 INSERT INTO `category` VALUES ('109', '新闻资讯', '3', '2016-01-12 15:26:36', '50', '7', '128', null, '1549', null);
 INSERT INTO `category` VALUES ('113', '联系我们', '1', '2016-01-12 16:16:04', '50', '7', '128', null, '1549', null);
 INSERT INTO `category` VALUES ('114', '易活首页', '0', '2016-01-12 16:26:41', '50', '7', '0', null, '1549', null);
@@ -224,7 +218,7 @@ INSERT INTO `category` VALUES ('133', '头部logo', '0', '2016-01-20 17:20:42', 
 DROP TABLE IF EXISTS `cms_999_50`;
 CREATE TABLE `cms_999_50` (
   `basicId` int(11) NOT NULL,
-  PRIMARY KEY  (`basicId`)
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -237,9 +231,9 @@ CREATE TABLE `cms_999_50` (
 DROP TABLE IF EXISTS `cms_ah_area_url_50`;
 CREATE TABLE `cms_ah_area_url_50` (
   `basicId` int(11) NOT NULL,
-  `url` varchar(220) default NULL,
-  `phone` varchar(220) default NULL,
-  PRIMARY KEY  (`basicId`)
+  `url` varchar(220) DEFAULT NULL,
+  `phone` varchar(220) DEFAULT NULL,
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -261,15 +255,15 @@ INSERT INTO `cms_ah_area_url_50` VALUES ('57', null, null);
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_article`;
 CREATE TABLE `cms_article` (
-  `ARTICLE_BASICID` int(20) default NULL COMMENT '文章ID',
-  `ARTICLE_AUTHOR` varchar(20) default NULL COMMENT '文章作者',
+  `ARTICLE_BASICID` int(20) DEFAULT NULL COMMENT '文章ID',
+  `ARTICLE_AUTHOR` varchar(20) DEFAULT NULL COMMENT '文章作者',
   `ARTICLE_CONTENT` longtext COMMENT '文章内容',
-  `ARTICLE_TYPE` varchar(100) default NULL COMMENT '文章类型',
-  `ARTICLE_SOURCE` varchar(300) default NULL COMMENT '文章来源',
-  `ARTICLE_URL` varchar(200) default NULL COMMENT '文章跳转链接地址',
-  `ARTICLE_KEYWORD` varchar(300) default NULL COMMENT '文章关键字',
-  `ARTICLE_FREEORDER` int(255) default NULL COMMENT '文章自定义显示顺序',
-  `ARTICLE_WEBID` int(11) default NULL COMMENT '文章管理的应用id',
+  `ARTICLE_TYPE` varchar(100) DEFAULT NULL COMMENT '文章类型',
+  `ARTICLE_SOURCE` varchar(300) DEFAULT NULL COMMENT '文章来源',
+  `ARTICLE_URL` varchar(200) DEFAULT NULL COMMENT '文章跳转链接地址',
+  `ARTICLE_KEYWORD` varchar(300) DEFAULT NULL COMMENT '文章关键字',
+  `ARTICLE_FREEORDER` int(255) DEFAULT NULL COMMENT '文章自定义显示顺序',
+  `ARTICLE_WEBID` int(11) DEFAULT NULL COMMENT '文章管理的应用id',
   UNIQUE KEY `ARTICLE_BASICID` (`ARTICLE_BASICID`),
   KEY `ARTICLE_WEBID` (`ARTICLE_WEBID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章表';
@@ -344,46 +338,41 @@ INSERT INTO `cms_article` VALUES ('105', '', '<p><img class=\"currentImg\" src=\
 INSERT INTO `cms_article` VALUES ('106', 'zzz', '<p>&nbsp;感谢楼主平台！！！<br/>※现有适用于中小型企业的、功能丰富的协同办公系统（带源码），年底促销预购从速！！！<br/>※java版分销平台，大量成功案例；年前下单送1年免费维护。<br/><br/>公司承接&nbsp;商城、微信公众平台、企业号、手机app开发，高端定制，公司有强大专业的JAVA技术团队。<br/>全平台采用Spring3.0+MyBatis3.1+FreeMarker2.3+Mysql5.5架构。<br/>新设项目短信推广，短信平台接入。<br/><br/>联系人:&nbsp;晨耀科技&nbsp;赵经理<br/>&nbsp;&nbsp;&nbsp;&nbsp;QQ：43594326<br/>电&nbsp;&nbsp;话:&nbsp;15164390813<br/></p><p><br/></p>', '', 'zzz', '/84/100\\106.html', 'zzz', '0', '1549');
 INSERT INTO `cms_article` VALUES ('107', '1', '<p>1</p>', '', '1', '/84/92\\107.html', '1', '0', '1549');
 INSERT INTO `cms_article` VALUES ('108', '2', '<p>2</p>', '', '2', '/84/92\\108.html', '2', '0', '1549');
-INSERT INTO `cms_article` VALUES ('170', '22222', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。6666</span></p>', 'f,', '大妈', '/114/125/127\\170.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('171', '', null, 'f,', '', '/102/103/126\\171.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('145', '', '', 'f,', '', '/114/115\\145.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('144', '倪贝芬2', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/110\\144.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('143', '222', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/110\\143.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('116', '', null, 'j,', '', '/106\\116.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('117', '', null, 'j,', '', '/106\\117.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('118', '', null, 'j,', '', '/106\\118.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('209', '', '<p style=\"text-align:center\"><img src=\"/../../upload/editor/1549//20160203/83731454492043750.png\" title=\"新闻资讯2.png\"/></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">&nbsp; &nbsp; &nbsp; &nbsp;即便是市值已经达到250亿美金的独角兽公司Airbnb，也曾经处于失败的边缘。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　2009年的时候，像许多其他创业公司一样，Airbnb差点就倒闭了。他们推出了新产品，但关注者甚少，公司利润每周约200美元，三位年轻的创始人之间也产生了裂痕。在创始人和团队的努力之下，这家公司才转危为安一直走到今天。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　但并非所有创业公司都能如此幸运。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　腾讯科技曾对创业公司进行过盘点，截至2015年12月31日，IT桔子公司库里共有989家公司处于“关闭”状态，占到了总体的4.5%，比2014年新增83家公司。电子商务、本地生活、SNS社交网络、文化娱乐体育是创业公司死亡的重灾区，关闭数量的比例分别达到17%、10%、10%、10%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　除了团队管理不善、商业模式不清晰、品牌定位不明确等普适性问题，腾讯科技还结合近两年创业热点总结出一些规律，希望能够给创业公司带来一些启发。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　<strong>　抛下伪需求</strong></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　2013年至今，以家庭为主要消费场所的服务领域涌现了大批创业公司，比如上门美甲、上门洗车、上门按摩等等。但所有上门服务都有那么强的需求吗？这其中又有多少是伪需求。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　从应用场景上来看，上门服务可以大概分为两类，一类是必须要上门才能完成的服务，比如上门家政、上门维修，这是刚需，并且行得通；另一类则相反，不一定要上门才能完成，比如上门洗狗、上门推拿。这些服务本来在线下就可以完成的，搬到线上意义不大，有的上门服务甚至就是伪需求。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　美丽加创始人马晓光曾对腾讯科技表示，如果是低频、低价，那这个事情就没法做，是违反市场规律的。比如家电维修是刚需，家电清理只是低频，也并非刚需——一个家庭一年都不见得会清晰、保养一次。“如果找不到好的商业模式，又没融到资，那就非常危险。”</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　O2O服务的核心并不是上门本身，关键在于是否能提升消费者的服务体验。马晓光表示，O2O服务在发展的第一阶段需要线上给线下带量，以美业为例，很难拉新。“一家店做得好与不好，关键在于能否留住老顾客，如果总想着如何拉新，说明客源存在问题，意味着新客人来了留不住。”</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　<strong>　把握融资节点</strong></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　腾讯科技此前统计发现，死掉的创业公司多集中在早期阶段。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　其中，处于种子天使轮的创业公司死亡几率最高，占总关闭公司整体的9.1%；其次是处于A轮的创业公司占总关闭公司整体的4.2%；尚未获投的创业公司占总关闭公司整体的2.7%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　这是因为，创业成本和门槛的降低、政策鼓励等原因造就了大批创业者。尤其是刚刚过去的2015年，迎来了爆发期。根据腾讯科技此前统计，从整体来看，2015年融资案例总数达到3932个，较过去五年表现出大幅增长。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　顺利拿到融资是很考验一个创业者的融资能力的，他们通常在有钱的时候就去寻求下一轮融资。但如果创业公司一心忙于商业模式的改进，忽略了融资和商业模式往往是并行的这点，就非常危险。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　而对于资金更为依赖的O2O领域，赶集网CEO杨浩涌就曾给出建议，他表示，“规模决定一切的O2O领域,早备钱粮,时刻准备过冬,估值与出让股份不是最关键的；寒冬季,O2O企业没钱熬不过6个月,钱不到账,一切都是扯淡。”</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　<strong>　数据并非一切</strong></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　在资本大潮的裹挟中，本应艰辛励志的创业故事逐渐变得浮躁起来，数据造假和各种谎言在O2O行业接连上演。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　据腾讯科技跟踪调查了解，刷单乱象已成为创业圈的“潜规则”。一方面，创业公司冲业绩，另一方面商家骗补贴。外卖、房产、二手车、上门维修、按摩等领域的创业公司都或多或少存在着通过冲量、切单、订单倒手等方法给自己的数据“加码”，或者以“峰值”的说法粉饰业绩，以便得到投资者的青睐，给竞争对手施压。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　金沙江创投合伙人朱啸虎曾公开讲过这样一个案例：上海有一个企业，两个月就做了3000单，数字是很漂亮，但客单价20块，发红包也是20块钱，订单几乎是免费的，这种恶性补贴是没有价值的。朱啸虎认为，要关注订单是不是健康，就要看在没有补贴的情况下是不是能持续下去。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　伴随着2015年的股市震荡，不少机构也被套在股市里面，资金端的紧张导致投资机构对于这类企业的投资谨慎又小心，在整体经济不明朗的情况下，每投出去一笔钱都有可能会覆水难收。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　因此融钱变得更加困难已经是既成事实。烧钱难以为继，虚幻的繁荣数据也只是一种“心理安慰”，唯有真正提供创新和价值的创业公司才有机会走的更加长远。</p><p><br/></p>', '', '', '/128/109\\209.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('119', '', null, 'j,', '', '/104/107\\119.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('120', '', null, '', '', '/104/107\\120.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('121', '', null, 'j,', '', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('122', '', null, 'j,', '', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('123', '', null, 'j,', '', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('124', '666', null, '', '', '/104/108\\124.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('141', '333', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/110\\141.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('138', '999', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/111\\138.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('139', '666', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/111\\139.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('140', '倪贝芬', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 SEO (Search Engine Optimization) ：汉译为搜索引擎优化。搜索引擎优化是一种利用搜索引擎规则来提高目前网站在有关搜索引擎内的自然搜索排名的方式。 SEO还包含站外SEO和站内SEO两方面；SEO是指为了从搜索引擎中获取更多的免费流量，从网站结构、内容建站方式、用户互动传播、页面等角度进行合理规划，使网站更适合搜索引擎的搜索原则的行为。 t mollitia animi, id est laborum et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</span></p>', '', '', '/109/111\\140.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('137', '滕志强', '<p>万达万达wdwdww我的文档喂喂喂多万<br/></p>', '', '', '/109/111\\137.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('210', '', '<p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">北京时间2月3日早间消息，周二有媒体报道称，微软已收购iOS和Android输入法应用SwiftKey。有趣的是，SwiftKey输入法并没有Windows Phone版本。</span></p><p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><img src=\"/../../upload/editor/1549//20160203/87861454492137041.png\" title=\"新闻资讯3.png\"/></span></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　北京时间2月3日早间消息，周二有媒体报道称，微软已收购iOS和Android输入法应用SwiftKey。有趣的是，SwiftKey输入法并没有Windows Phone版本。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　根据《金融时报》的报道，微软这笔收购的价格约为2.5亿美元。微软将于本周晚些时候宣布这笔收购。微软目前拒绝对此置评。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　微软此前还曾收购多款应用，包括Acompli、MileIQ、Sunrise和Wunderlist。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　SwiftKey曾于2013年宣布获得了一轮1750万美元的投资，投资方包括Accel Partners、Index Ventures和Octopus Investments。该公司成立于2008年，目前在伦敦、旧金山和首尔拥有办公室。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　根据该公司网站的介绍，已有3亿台移动设备安装了SwiftKey输入法，而这一输入法支持89种语言。一加、三星和小米都曾是SwiftKey的合作伙伴。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　《金融时报》报道称，SwiftKey的150多名员工中的许多人都将加入微软研究院。</p><p><br/></p>', '', '', '/128/109\\210.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('211', '匿名', '<p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">北京时间2月3日早间消息，购物中心运营商General Growth Properties CEO桑迪普·马斯拉尼(Sandeep Mathrani)本周透露，亚马逊计划开设300至400家书店。</span></p><p style=\"text-align:center\"><img src=\"/../../upload/editor/1549//20160203/11011454492192196.png\" title=\"新闻资讯4.png\"/></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">北京时间2月3日早间消息，购物中心运营商General Growth Properties CEO桑迪普·马斯拉尼(Sandeep Mathrani)本周透露，亚马逊计划开设300至400家书店。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　在周二General Growth的财报电话会议上，马斯拉尼被问到购物中心的客流量，而他随后透露了亚马逊的计划。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　去年11月，亚马逊在西雅图开设了首家书店，这表明了亚马逊关于实体店的宏伟目标。亚马逊最初以在线卖书起家。这些书店还将销售亚马逊的数码产品，例如智能音箱Echo，以及流媒体机顶盒Fire TV。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　Wedbush Securities分析师迈克尔·帕赫特(Michael Pachter)表示：“这是隐藏在书店外表下的消费电子商店。许多人认为百思买将会一直存在的原因之一在于，很多消费者在没有看见实物时不会愿意购买这些商品。”</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　亚马逊发言人拒绝对此消息置评。</p><p><br/></p>', '', '', '/128/109\\211.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('212', '匿名', '<p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">　　北京时间2月3日早间消息，Uber刚刚推出了全新的应用图标、公司logo和整体的品牌设计。新设计总难免引发争议，但更重要的是，这些新设计在很大程度上反映了Uber联合创始人兼CEO特拉维斯-卡兰尼克(Travis Kalanick)的意志。</span></p><p style=\"text-align:center\"><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><img src=\"/../../upload/editor/1549//20160203/1311454492351013.png\" title=\"新闻资讯5.png\"/></span></p><p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">　《连线》杂志在针对这套全新设计撰写的长文中写到：“卡兰尼克并不是设计师……但他却不愿意将品牌改版流程交给其他人。这是一项不同寻常的决策。在改版公司标志的过程中，多数CEO都会聘请专业人士——包括擅长把企业价值通过文字和色彩传递出来的品牌策划公司——或者将这项任务分配给内部设计团队。但卡兰尼克却并没有这么做。过去3年间，他与Uber设计总监沙里木·阿敏(Shalim Amin)以及十余名员工在一间通风不好的房间里规划出了各种想法，他们还称之为‘战情室’。在此过程中，他想出了从字母到配色等各种概念。‘我不了解这件事情。’卡兰尼克说，‘我只知道它很重要，所以我希望把它做好。’”</span></span></p><p style=\"text-align:center\"><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><img src=\"/../../upload/editor/1549//20160203/73831454492364844.png\" title=\"新闻资讯55.png\"/></span></span></p><p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"></span></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　卡兰尼克的个人偏好也在新设计定稿的过程中扮演了重要角色。该公司希望替换金属黑和银色的配色方案，，因为这很难适应节日氛围，并希望对其进行软化，减少攻击性。设计团队只能要逆来顺受。《连线》杂志对阿敏和他的团队描述如下：</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　“卡兰尼克变得‘全神贯注’，根据他自己的偏好评估配色，阿敏委婉地用‘独特’来评价这种偏好。整个房间都爆发出一阵阵傻笑。‘我基本放弃了去理解你的个人偏好。’阿明对他说。”</p><p style=\"text-align:center\"><img src=\"/../../upload/editor/1549//20160203/10711454492379555.png\" title=\"新闻资讯555.png\"/></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　最终，这个团队意识到，对于一家业务范围遍及65个国家的公司而言，不应该让一个居住在旧金山的40岁白人来决定形象设计。所以，他们允许各个区域根据自己所在地的特点重新设计配色，同时给出了5个全球通用的配色方案。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　《连线》杂志认为，40岁的卡兰尼克希望利用此次改版实现自我表达。而卡兰尼克也同意这一观点：“当你开始知道自己是谁的时候，色温、色彩这些东西就水到渠成了。”</p><p><span style=\"color: rgb(51, 51, 51); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><br/></span><br/></p>', '', '', '/128/109\\212.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('149', 'rewe', '<p>阿斯顿节话费卡上的讲话看撒娇的话费阿卡上的讲话分卡就是</p>', '', 'erewew', '/114/117\\149.html', 'rereew', '0', '1549');
 INSERT INTO `cms_article` VALUES ('148', '', '', '', '', '/114/116\\148.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('150', '', '<p>主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3主营业务3</p>', '', '', '/114/118\\150.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('151', '', '<p>主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2主营业务2</p>', '', '', '/114/118\\151.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('152', '', '<p>主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1主营业务1</p>', '', '', '/114/118\\152.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('150', '', '<p><span style=\"color: rgb(102, 102, 102); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: center; background-color: rgb(255, 255, 255);\">采用国际标准化的网站运维外包模式，用一流的互联网团队为企业提供持续、高品质的内容、设计、技术运营维护和搜索引擎优化（SEO）等服务。</span></p>', '', '', '/114/118\\150.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('151', '', '<p><span style=\"color: rgb(102, 102, 102); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: center; background-color: rgb(255, 255, 255);\">我们的专业团队将作为您的IT部门来开展长期紧密的合作，立足于您的业务和信息化目标，开发符合您业务目标和商业价值的软件。</span></p>', '', '', '/114/118\\151.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('152', '', '<p><span style=\"color: rgb(102, 102, 102); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; text-align: center; background-color: rgb(255, 255, 255);\">性价比最高的建站风暴，一站式解决方案，一条龙的服务，您本来就应该坐享其成</span></p>', '', '', '/114/118\\152.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('153', '', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13.3333px; line-height: 23.1111px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。</span></p>', 'j,', '', 'www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('154', '滕志强', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13.3333px; line-height: 23.1111px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。</span></p>', '', '', '/114/119\\154.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('155', '滕志强3', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13.3333px; line-height: 23.1111px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。</span></p>', '', '', '/114/119\\155.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('156', '滕志强4', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13.3333px; line-height: 23.1111px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。</span></p>', 'j,', '', '/114/119\\156.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('157', '', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13.3333px; line-height: 23.1111px; background-color: rgb(255, 255, 255);\">统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 99</span></p>', 'f,', '', '/114/120\\157.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('184', '倪贝芬19', '<p>往往七万七千万无权无钱</p>', '', '', '/128/109\\184.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('208', '匿名', '<p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">业绩是创新的最好试金石。从近期陆续公布的全球各大科技公司企业财报来看，手机与硬件业务需求放缓，云服务成为一匹黑马。</span></p><p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><img src=\"/../../upload/editor/1549//20160203/17261454491359197.png\" title=\"外包资讯1.png\"/></span></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\"><strong>　　手机业务遭遇寒冬</strong></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　1月26日晚间，苹果发布了2015年-2016财年截至2015年12月26日的第一财季业绩数据。报告显示，苹果第一财季营收为759亿美元，比上年同期的746亿美元增长1.7%；净利润为184亿美元，比上年同期的180亿美元增长1.9%。苹果第一财季营收和净利润均创历史新高，但增速已明显放缓。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　其中iPhone一共售出7480万部，较上年同期的7450万部增长0.4%，低于预计的7500万部，iPhone营收为516.4亿美元，较上年同期的512亿美元增长1%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　日子同样不好过的还有苹果的竞争对手三星公司。三星电子发布的2015年四季度财报显示，销售额同比增长1.1%，营业利润同比增长16%，净利润同比减少39.8%。全年销售额下滑2.7%，营业利润增长5.5%。经营智能手机和平板电脑等的IT及移动通信业务的销售额同比减少4.9%，营业利润同比增长13.8%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　全球智能手机市场已经逐渐趋近于饱和，美国咨询公司高纳德(Gartner)的数据显示，2015年第三季度，在世界范围内，出售给最终用户的手机销量累计近4.78亿部，较2014年同期仅增长3.7%，并预计今年智能手机出货量仅增长2.6%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　随着苹果和三星财报的公布，高盛也下调了今年智能手机增长的预期，预计今年及明年智能手机出货量增长6%和7%，低于此前估计的13%和12%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　<strong>　云服务惊喜市场</strong></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　尽管苹果和三星等公司的财报为市场带来了一丝寒意，但是也有几家公司的财报让市场惊喜。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　社交媒体巨头Facebook及谷歌母公司Alphabet当属赢家。财报显示，Facebook去年第四季营收为58.41亿美元，较上年同期增长52%；净利润为15.62亿美元，较上年同期增长123%。受净利润和营收双双超过预期的推动，Facebook股价自上周三收盘以来已累计上涨了22%。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　而Alphabet去年第四季度总营收为213.29亿美元，同比增长18%，不计入汇率变动的影响为同比增长24%。Alphabet股价盘后一度大涨超过8%，市值超越苹果，成为全球市值最高的公司。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　更让市场惊喜的是，几家科技公司在云服务方面的表现十分靓丽。1月29日微软发布了该公司截至2015年12月31日的2016财年的第二财季财报。虽然其业绩、净利润双双下滑，但微软智能云(Azure+office365)营收实现高速增长。财报显示，微软智能云收入增长5%，达到63亿美元。其中，微软云Azure营收同比去年增长140%，高端收入增长达3倍。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　同样在云服务领域表现出色的还有亚马逊公司。据亚马逊首席财务官奥尔萨夫基斯(Brain Olsavsky)介绍，去年第四季度是亚马逊网络服务(Amazon Web Services，简称AWS)增长最快的一个季度。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　根据财报数据，亚马逊去年第四季度AWS收入高于24亿美元，年运营率接近100亿美元。公有云服务销售额同比增长69%，利润攀升到28.5%，AWS实现了6.87亿美元的利润。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　高纳德公司预计，2016年底全球公有云服务市场价值将达到2040亿美元。其中主要收入将来自于云广告，预计今年云广告收入可达903亿美元，增速为13.6%。高纳德表示，业务流程即服务(BPaaS)收入将达426亿美元，但增速较为缓慢，预计为8.7%。软件即服务(SaaS)仍将是市场最主要的部分，预计今年收入达377亿美元，增速为20.3%。平台即服务(PaaS)今年增速健康，预计为21.1%，但贡献额仅为46亿美元。但是基础设施即服务(IaaS)将会是增长最快的部分，增速预计高达38.4%，预计收入为224亿美元。</p><p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\"><br/></span><br/></p>', '', '', '/128/109\\208.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('158', '', null, 'j,', 'http://www.baidu.com', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('159', '', null, 'j,', 'http://www.baidu.com', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('160', '', null, 'j,', 'http://www.baidu.com', 'http://www.baidu.com', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('161', '', null, 'f,', '', '/102/103/123\\161.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('162', '', null, 'f,', '', '/102/103/123\\162.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('163', '', null, 'f,', '', '/102/103/123\\163.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('164', '', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\">333统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导<span style=\"color: rgb(255, 0, 0); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.8px; background-color: rgb(255, 255, 255);\"><strong>企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板</strong></span><strong>。它</strong>适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。 统一是一个非常美丽的响应引导企业和创意专业人士的模板。它适用于所有主流web浏览器、平板电脑和手机。9999</span></p>', '', '', '/102/103/124\\164.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('165', '', '<p><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容</span><span style=\"color: rgb(85, 85, 85); font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20.7999992370605px; background-color: rgb(255, 255, 255);\">公司介绍详细内容。</span></p>', 'f,', '', '/114/125\\165.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('164', '', '<p style=\"margin-top: 0px; margin-bottom: 10px; color: rgb(85, 85, 85); line-height: 20.7999992370605px; font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; border-radius: 0px !important; background-color: rgb(255, 255, 255);\">安徽易活网络技术有限公司成立于2014年初，拥有强大的开发团队。我公司专业提供网站开发、APP开发、微信开发、文案写作、活动策划、广告设计等服务。</p><p style=\"margin-top: 0px; margin-bottom: 10px; color: rgb(85, 85, 85); line-height: 20.7999992370605px; font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; border-radius: 0px !important; background-color: rgb(255, 255, 255);\">它的创始人臧云龙、陆超先生带领一批来自全国的大学生创始的互联网电商平台，是芜湖市政府“大学生创业重点孵化项目”。易食客核心领导层都有着海外留学背景，凭借更为广阔的视野和敢拼敢创的精神，公司从最初的2名创始成员发展到30人的规模，且平均年龄不到25岁，是一支极具生命力和挑战力的年轻团队。</p><p><br/></p>', '', '', '/102/103/124\\164.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('214', '', null, '', '', '/102/103/126\\214.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('165', '', '<p>安徽易活网络技术有限公司成立于2014年初，拥有强大的开发团队。我公司专业提供网站开发、APP开发、微信开发、文案写作、活动策划、广告设计等服务。</p><p>它的创始人臧云龙、陆超先生带领一批来自全国的大学生创始的互联网电商平台，是芜湖市政府“大学生创业重点孵化项目”。易食客核心领导层都有着海外留学背景，凭借更为广阔的视野和敢拼敢创的精神，公司从最初的2名创始成员发展到30人的规模，且平均年龄不到25岁，是一支极具生命力和挑战力的年轻团队。</p><p><br/></p>', 'f,', '', '/114/125\\165.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('213', '匿名', '<p><span style=\"color: rgb(102, 102, 102); font-family: 微软雅黑; line-height: 32px; background-color: rgb(255, 255, 255);\">伴随着智能手机销量原地踏步，苹果业绩和市值的变化趋势出现了重大变动，股价开始逐步下行，与此同时，谷歌母公司Alphabet通过公司分拆以及搜索广告业务的持续强势，股价继续攀升。美国时间周一，Alphabet的公司市值已超过了苹果，成为全世界市值最大的公司，苹果失去了占据四年半的这一称号。</span></p><p style=\"text-align:center\"><img src=\"/../../upload/editor/1549//20160203/82981454492463371.png\" title=\"新闻资讯6.png\"/></p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">伴随着智能手机销量原地踏步，苹果业绩和市值的变化趋势出现了重大变动，股价开始逐步下行，与此同时，谷歌母公司Alphabet通过公司分拆以及搜索广告业务的持续强势，股价继续攀升。美国时间周一，Alphabet的公司市值已超过了苹果，成为全世界市值最大的公司，苹果失去了占据四年半的这一称号。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　周一，Alphabet公布了去年四季度的财报，各项指标超出了华尔街分析师预期。财报的利好给Alphabet股价带来了上涨动力。在盘后交易时段，股价出现8%的大幅暴涨，稍后涨幅回落。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　腾讯科技通过美国财经新闻网站Fool的美股行情系统看到，北京时间2月2日早间，Alphabet周一收盘价为750.5美元，盘中上涨幅度为1%。而在盘后交易时段内，Alphabet最终上涨了5.72%，最新股价显示为795.01美元。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　美股行情系统显示，Alphabet（C类普通股股票）的最新资本市值显示为5161亿美元。根据英国路透社的报道，Alphabet各类股票的市值总计，已经超过了5550亿美元，已经超过了苹果的市值。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　据《今日美国报》网站报道，当天美股收盘时，苹果公司的最新收盘市值为5420亿美元。当天在盘后交易时段，苹果股价下跌了1%。由于去年四季度财报表现十分糟糕，苹果股价已经出现了大幅暴跌。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　在过去的这个季度中，苹果最为依赖的智能手机业务出现了原地踏步，其他的平板电脑、个人电脑全部出现同比下滑。诸多媒体指出，iPhone及其带来的苹果业务高增长时代，已经走到了尽头，苹果迫切需要下一个重要创新产品，来推动业绩和股价的继续增长。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　据报道，在过去四年半时间里，苹果一直能够自称是全世界市值最大的公司。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　苹果和Alphabet（谷歌为核心企业）的市值相对变化，着实惊人。大约一年之前，苹果的市值几乎是Alphabet的两倍之多。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　不过如今，苹果手机的销售发生了巨变，在iPad问世六年之后，库克执掌下的苹果，并未能够推出下一个重大创新产品。不过，Alphabet则继续保持着高增长，除了传统的网络搜索引擎和搜索广告之外，该公司也在网络视频、移动广告领域快速发展。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　此外，众所周知的是，Alphabet也在诸多领域进行前沿性创新研发，成为舆论关注的主角，比如其在自动驾驶汽车、高空上网气球、千兆光纤宽带、医学研究、智能家居等领域，都取得一定的成果。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　美国BGC金融公司的分析师Colin Gillis表示，今天，Alphabet从苹果手中抢过了市值第一名的位置，未来双方的名次可能很难发生变化，“Alphabet已经占据了单一一极的位置”。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　在Alphabet的股价上涨动力方面，这位分析师指出了多种原因，其中包括营收增长、各种开支逐步控制、更具有财务自律，另外谷歌开始通过股票回购计划，进一步刺激了股价，从而对股东进行了经济回报。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　据美国媒体指出，未来苹果和Alphabet有可能成为率先超过一万亿美元市值的第一批公司，不过谁将会首先获得这一荣誉，还不得而知。</p><p style=\"margin-top: 20px; margin-bottom: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); line-height: 32px; font-family: 微软雅黑; white-space: normal; background-color: rgb(255, 255, 255);\">　　在此之前，包括英国《金融时报》、美联社等媒体都预测，在本周一财报发布之后，Alphabet的市值将会超过苹果，成为全球第一名。其中《金融时报》指出，Alphabet第一次公开了各种创新研发业务的成本，这样可以帮助华尔街分析师对于Alphabet的谷歌以及其他业务，做出更加精确的价值估值，这种精确化，最终将导致公司市值进一步攀升。</p><p><br/></p>', '', '', '/128/109\\213.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('172', '', null, 'f,', '', '/102/103/126\\172.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('185', '', '<p>wd我顶我顶我顶我顶我顶我顶网</p>', '', '', '/128/104/106\\185.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('201', '', '<p style=\"text-align:center\"><br/></p><p style=\"text-align:center\"><br/></p><p style=\"text-align:center\"><br/></p><p style=\"text-align: center;\"><img src=\"/../../upload/editor/1549//20160203/23251454486482434.jpg\" title=\"0元建ç«?.jpg\"/></p>', '', '', '/128/104/105\\201.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('186', '', '<p>带我去打球万达无穷的去</p>', '', '', '/128/104/108\\186.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('187', '', null, '', '', '/128/104/108\\187.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('188', '', null, '', '', '/128/104/108\\188.html', '', '0', '1549');
@@ -392,19 +381,20 @@ INSERT INTO `cms_article` VALUES ('190', '', null, 'f,', '', '/114/115\\190.html
 INSERT INTO `cms_article` VALUES ('191', '', null, 'p,', '', '/128/113\\191.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('197', '', '<p>安徽省芜湖市镜湖区观澜路一号滨江商务楼24</p>', '', '', '/128/113/130/131\\index.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('198', '', null, '', '', '/128/113\\198.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('199', '', '<p>© 2014-2016 安徽易活网络技术有限公司（Anhui YiHuo Network Co.,Ltd.） &nbsp;All Rights Reserved. | 网站备案：皖ICP备14007008号-2客服电话：4008-553-758|Email:helpdesk@yihuonet.com.</p><p><br/></p>', '', '', '/132\\199.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('199', '', '<p><br/></p><p>© 2014-2016 安徽易活网络技术有限公司（Anhui YiHuo Network Co.,Ltd.） &nbsp;All Rights Reserved. | 网站备案：皖ICP备14007008号-2客服电话：4008-553-758|Email:helpdesk@yihuonet.com.</p><p><br/></p>', '', '', '/132\\199.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('200', '', null, '', '', '/133\\index.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('173', '', null, 'f,', '', '/102/103/126\\173.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('174', '', null, 'f,', '', '/102/103/126\\174.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('175', '', null, 'f,', '', '/102/103/126\\175.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('176', '', null, 'f,', '', '/102/103/127\\176.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('177', '', null, 'f,', '', '/102/103/127\\177.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('178', '', null, 'f,', '', '/102/103/127\\178.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('179', '', null, 'f,', '', '/102/103/127\\179.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('180', '倪贝芬', null, 'f,', '产品人', '/102/103/127\\180.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('216', '', null, 'f,', '', '/102/103/127\\216.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('215', '王强', '', 'f,', '', '/102/103/127\\215.html', '', '0', '1549');
 INSERT INTO `cms_article` VALUES ('181', '', null, '', 'http://www.baidu.com', '/114/122\\181.html', '', '0', '1549');
-INSERT INTO `cms_article` VALUES ('182', '倪', '<p>323232</p>', '', '', '/109/110\\182.html', '3232', '0', '1549');
-INSERT INTO `cms_article` VALUES ('183', '6666', '<p>666</p>', '', '666', '/109/112\\183.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('202', '', null, '', '', '/128/104/105\\202.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('203', '', null, '', '', '/128/104/105\\203.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('204', '', null, '', '', '/128/104/106\\204.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('205', '', null, '', '', '/128/104/106\\205.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('206', '', null, '', '', '/128/104/106\\206.html', '', '0', '1549');
+INSERT INTO `cms_article` VALUES ('207', '', null, '', '', '/128/104/106\\207.html', '', '0', '1549');
 
 -- ----------------------------
 -- Table structure for `cms_class_50`
@@ -412,9 +402,9 @@ INSERT INTO `cms_article` VALUES ('183', '6666', '<p>666</p>', '', '666', '/109/
 DROP TABLE IF EXISTS `cms_class_50`;
 CREATE TABLE `cms_class_50` (
   `basicId` int(11) NOT NULL,
-  `school` varchar(220) default NULL,
-  `platform` varchar(220) default NULL,
-  PRIMARY KEY  (`basicId`)
+  `school` varchar(220) DEFAULT NULL,
+  `platform` varchar(220) DEFAULT NULL,
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -432,17 +422,17 @@ INSERT INTO `cms_class_50` VALUES ('7', '1', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_column`;
 CREATE TABLE `cms_column` (
-  `COLUMN_CATEGORYID` int(22) NOT NULL default '0' COMMENT '关联category表（类别表ID）',
-  `COLUMN_KEYWORD` varchar(300) default NULL COMMENT '栏目简介',
-  `COLUMN_DESCRIP` varchar(500) default NULL COMMENT '栏目关键字描述',
-  `COLUMN_TYPE` int(2) default NULL COMMENT '1,代表列表栏目。2，代表缩单篇。',
-  `COLUMN_URL` varchar(50) default NULL COMMENT '如果是外部链接，则保持外部链接地址。如果为最终列表栏目，就保存文章显示列表',
-  `COLUMN_LISTURL` varchar(50) default NULL COMMENT '最终列表栏目的列表模板地址',
-  `COLUMN_TENTMODELID` int(22) default NULL COMMENT '栏目类型,直接影响栏目发布的表单样式',
-  `COLUMN_WEBSITEID` int(22) default NULL COMMENT '栏目所属站点ID',
-  `COLUMN_PATH` varchar(150) default NULL COMMENT '栏目路径',
-  `COLUMN_CONTENTMODELID` int(11) default '0' COMMENT '栏目管理的内容模型id',
-  PRIMARY KEY  (`COLUMN_CATEGORYID`)
+  `COLUMN_CATEGORYID` int(22) NOT NULL DEFAULT '0' COMMENT '关联category表（类别表ID）',
+  `COLUMN_KEYWORD` varchar(300) DEFAULT NULL COMMENT '栏目简介',
+  `COLUMN_DESCRIP` varchar(500) DEFAULT NULL COMMENT '栏目关键字描述',
+  `COLUMN_TYPE` int(2) DEFAULT NULL COMMENT '1,代表列表栏目。2，代表缩单篇。',
+  `COLUMN_URL` varchar(50) DEFAULT NULL COMMENT '如果是外部链接，则保持外部链接地址。如果为最终列表栏目，就保存文章显示列表',
+  `COLUMN_LISTURL` varchar(50) DEFAULT NULL COMMENT '最终列表栏目的列表模板地址',
+  `COLUMN_TENTMODELID` int(22) DEFAULT NULL COMMENT '栏目类型,直接影响栏目发布的表单样式',
+  `COLUMN_WEBSITEID` int(22) DEFAULT NULL COMMENT '栏目所属站点ID',
+  `COLUMN_PATH` varchar(150) DEFAULT NULL COMMENT '栏目路径',
+  `COLUMN_CONTENTMODELID` int(11) DEFAULT '0' COMMENT '栏目管理的内容模型id',
+  PRIMARY KEY (`COLUMN_CATEGORYID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='栏目表';
 
 -- ----------------------------
@@ -474,8 +464,6 @@ INSERT INTO `cms_column` VALUES ('103', '', '', '1', 'page_about.htm', 'page_abo
 INSERT INTO `cms_column` VALUES ('104', '', '', '1', 'portfolio_item.htm', 'portfolio.htm', null, '1549', '/128/104', '3');
 INSERT INTO `cms_column` VALUES ('105', '产品类型1', '', '1', 'portfolio_item.htm', 'portfolio.htm', null, '1549', '/128/104/105', '3');
 INSERT INTO `cms_column` VALUES ('106', '', '', '1', 'portfolio_item.htm', 'portfolio.htm', null, '1549', '/128/104/106', '3');
-INSERT INTO `cms_column` VALUES ('107', '食品', '', '1', 'portfolio_item.htm', 'portfolio.htm', null, '1549', '/128/104/107', '3');
-INSERT INTO `cms_column` VALUES ('108', '食品', '', '1', 'portfolio_item.htm', 'portfolio.htm', null, '1549', '/128/104/108', '3');
 INSERT INTO `cms_column` VALUES ('109', '', '', '1', 'portfolio_zixun.htm', 'portfolio_4columns.htm', null, '1549', '/128/109', '0');
 INSERT INTO `cms_column` VALUES ('113', '', '', '1', 'page_contact.htm', 'page_contact.htm', null, '1549', '/128/113', '4');
 INSERT INTO `cms_column` VALUES ('114', '', '', '1', 'index.htm', 'index.htm', null, '1549', '/114', '0');
@@ -499,34 +487,34 @@ INSERT INTO `cms_column` VALUES ('133', '', '', '2', 'index.htm', null, null, '1
 DROP TABLE IF EXISTS `cms_contactus_50`;
 CREATE TABLE `cms_contactus_50` (
   `basicId` int(11) NOT NULL,
-  `address` varchar(500) default NULL,
-  `email` varchar(220) default NULL,
-  `phone` varchar(220) default NULL,
-  `website` varchar(220) default NULL,
-  `hours` varchar(500) default NULL,
-  PRIMARY KEY  (`basicId`)
+  `address` varchar(500) DEFAULT NULL,
+  `email` varchar(220) DEFAULT NULL,
+  `phone` varchar(220) DEFAULT NULL,
+  `website` varchar(220) DEFAULT NULL,
+  `hours` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cms_contactus_50
 -- ----------------------------
-INSERT INTO `cms_contactus_50` VALUES ('198', '安徽省芜湖市镜湖区观澜路一号\r\n滨江商务楼', '545290234@qq.com', '17756062722', 'http：//www.baidu.com', '早上不上班，下午才上班，\r\n周末休息');
+INSERT INTO `cms_contactus_50` VALUES ('198', '安徽省芜湖市镜湖区观澜路一号\r\n滨江商务楼2406室', '714633931@qq.com', '18715325230', 'http：//www.yihuonet.com', '9：00~18：00\r\n全年无休，欢迎光临');
 
 -- ----------------------------
 -- Table structure for `cms_content_mode_field`
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_content_mode_field`;
 CREATE TABLE `cms_content_mode_field` (
-  `FIELD_ID` int(11) NOT NULL auto_increment COMMENT '字段自增长id',
-  `FIELD_TIPSNAME` varchar(30) default NULL COMMENT '字段提示文字',
-  `FIELD_FIELDNAME` varchar(20) default NULL COMMENT '字段名称',
-  `FIELD_TYPE` int(11) default NULL COMMENT '字段类型（如1.单行，2.多行，3.图片，等）',
-  `FIELD_DEFAULT` varchar(250) default NULL COMMENT '字段默认值',
-  `FIELD_ISNULL` int(11) default NULL COMMENT '字段是否为空 0:必填 1:可选',
-  `FIELD_CMID` int(11) default NULL COMMENT '关联内容模型表id',
-  `FIELD_SORT` int(11) default NULL COMMENT '字段排序',
-  `FIELD_ISSEARCH` int(255) default NULL COMMENT '字段是否支持后台搜索0：不支持，1：支持',
-  PRIMARY KEY  (`FIELD_ID`)
+  `FIELD_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '字段自增长id',
+  `FIELD_TIPSNAME` varchar(30) DEFAULT NULL COMMENT '字段提示文字',
+  `FIELD_FIELDNAME` varchar(20) DEFAULT NULL COMMENT '字段名称',
+  `FIELD_TYPE` int(11) DEFAULT NULL COMMENT '字段类型（如1.单行，2.多行，3.图片，等）',
+  `FIELD_DEFAULT` varchar(250) DEFAULT NULL COMMENT '字段默认值',
+  `FIELD_ISNULL` int(11) DEFAULT NULL COMMENT '字段是否为空 0:必填 1:可选',
+  `FIELD_CMID` int(11) DEFAULT NULL COMMENT '关联内容模型表id',
+  `FIELD_SORT` int(11) DEFAULT NULL COMMENT '字段排序',
+  `FIELD_ISSEARCH` int(255) DEFAULT NULL COMMENT '字段是否支持后台搜索0：不支持，1：支持',
+  PRIMARY KEY (`FIELD_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='自定义内容模型关联字段表';
 
 -- ----------------------------
@@ -546,11 +534,11 @@ INSERT INTO `cms_content_mode_field` VALUES ('11', '工作时间', 'hours', '2',
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_content_model`;
 CREATE TABLE `cms_content_model` (
-  `CM_ID` int(11) NOT NULL auto_increment COMMENT '自增长id',
+  `CM_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长id',
   `CM_TIPSNAME` varchar(30) NOT NULL COMMENT '表单提示文字',
   `CM_TABLENAME` varchar(20) NOT NULL COMMENT '表单名称',
   `CM_MANAGERID` int(11) NOT NULL COMMENT '表单管理员ID',
-  PRIMARY KEY  (`CM_ID`)
+  PRIMARY KEY (`CM_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='自定义模型表';
 
 -- ----------------------------
@@ -566,8 +554,8 @@ INSERT INTO `cms_content_model` VALUES ('4', '联系我们', 'cms_contactus_50',
 DROP TABLE IF EXISTS `cms_picture_50`;
 CREATE TABLE `cms_picture_50` (
   `basicId` int(11) NOT NULL,
-  `picture` varchar(1000) default NULL,
-  PRIMARY KEY  (`basicId`)
+  `picture` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -586,17 +574,24 @@ INSERT INTO `cms_picture_50` VALUES ('185', null);
 INSERT INTO `cms_picture_50` VALUES ('186', '/upload/article/1549/1453261566084.jpg|/upload/article/1549/1453261566178.jpg|/upload/article/1549/1453261566269.jpg');
 INSERT INTO `cms_picture_50` VALUES ('187', null);
 INSERT INTO `cms_picture_50` VALUES ('188', null);
+INSERT INTO `cms_picture_50` VALUES ('201', '/upload/article/1549/1454486895201.png|/upload/article/1549/1454486899162.png|/upload/article/1549/1454486899213.png');
+INSERT INTO `cms_picture_50` VALUES ('202', null);
+INSERT INTO `cms_picture_50` VALUES ('203', null);
+INSERT INTO `cms_picture_50` VALUES ('204', null);
+INSERT INTO `cms_picture_50` VALUES ('205', null);
+INSERT INTO `cms_picture_50` VALUES ('206', null);
+INSERT INTO `cms_picture_50` VALUES ('207', null);
 
 -- ----------------------------
 -- Table structure for `cms_search`
 -- ----------------------------
 DROP TABLE IF EXISTS `cms_search`;
 CREATE TABLE `cms_search` (
-  `SEARCH_ID` int(11) NOT NULL auto_increment COMMENT '自增长ID',
+  `SEARCH_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
   `SEARCH_NAME` varchar(20) NOT NULL COMMENT '搜索名称',
   `SEARCH_TEMPLETS` varchar(50) NOT NULL COMMENT '搜索结果模版',
   `SEARCH_WEBSITEID` int(11) NOT NULL COMMENT '搜索管理的应用id',
-  PRIMARY KEY  (`SEARCH_ID`)
+  PRIMARY KEY (`SEARCH_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='自定义搜索表';
 
 -- ----------------------------
@@ -610,7 +605,7 @@ INSERT INTO `cms_search` VALUES ('1', '文章搜索', 'search.htm', '1549');
 DROP TABLE IF EXISTS `cms_tetle_50`;
 CREATE TABLE `cms_tetle_50` (
   `basicId` int(11) NOT NULL,
-  PRIMARY KEY  (`basicId`)
+  PRIMARY KEY (`basicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -622,18 +617,18 @@ CREATE TABLE `cms_tetle_50` (
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `COMMENT_ID` int(11) NOT NULL auto_increment COMMENT '评论ID（主键）',
+  `COMMENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论ID（主键）',
   `COMMENT_COMMENTID` int(11) NOT NULL COMMENT '父评论ID',
   `COMMENT_CONTENT` text NOT NULL COMMENT '评论的内容',
-  `COMMENT_PICTURE` varchar(300) default NULL COMMENT '评论时发布的图片，可上传多张图片',
+  `COMMENT_PICTURE` varchar(300) DEFAULT NULL COMMENT '评论时发布的图片，可上传多张图片',
   `COMMENT_TIME` datetime NOT NULL COMMENT '评论时间',
-  `COMMENT_TYPE` int(11) NOT NULL default '2' COMMENT '评论的类型：1 匿名，2 公开，默认为公开',
-  `COMMENT_PEOPLEID` int(11) default '0' COMMENT '评论者ID，默认为非会员用户（即游客）',
-  `COMMENT_POINTS` int(11) default '0' COMMENT '评价打分（-1至5分）',
+  `COMMENT_TYPE` int(11) NOT NULL DEFAULT '2' COMMENT '评论的类型：1 匿名，2 公开，默认为公开',
+  `COMMENT_PEOPLEID` int(11) DEFAULT '0' COMMENT '评论者ID，默认为非会员用户（即游客）',
+  `COMMENT_POINTS` int(11) DEFAULT '0' COMMENT '评价打分（-1至5分）',
   `COMMENT_BASICID` int(11) NOT NULL COMMENT '（文章、商品...）绑定basicId（外键）',
-  `COMMENT_APPID` int(11) default NULL COMMENT '(文章、商品）绑定的应用编号',
-  PRIMARY KEY  (`COMMENT_ID`),
-  KEY `index2` USING BTREE (`COMMENT_BASICID`)
+  `COMMENT_APPID` int(11) DEFAULT NULL COMMENT '(文章、商品）绑定的应用编号',
+  PRIMARY KEY (`COMMENT_ID`),
+  KEY `index2` (`COMMENT_BASICID`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COMMENT='评论表';
 
 -- ----------------------------
@@ -645,13 +640,13 @@ CREATE TABLE `comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `diy_50_message`;
 CREATE TABLE `diy_50_message` (
-  `Id` int(11) NOT NULL auto_increment,
-  `date` timestamp NULL default NULL COMMENT 'CURRENT_TIMESTAMP',
-  `fromID` int(11) default NULL,
-  `useName` varchar(220) default NULL,
-  `Emai` varchar(220) default NULL,
-  `details` varchar(220) default NULL,
-  PRIMARY KEY  (`Id`)
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NULL DEFAULT NULL COMMENT 'CURRENT_TIMESTAMP',
+  `fromID` int(11) DEFAULT NULL,
+  `useName` varchar(220) DEFAULT NULL,
+  `Emai` varchar(220) DEFAULT NULL,
+  `details` varchar(220) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -692,12 +687,12 @@ INSERT INTO `diy_50_message` VALUES ('29', '2016-01-18 10:44:30', '2', '倪贝�
 -- ----------------------------
 DROP TABLE IF EXISTS `diy_50_msg`;
 CREATE TABLE `diy_50_msg` (
-  `Id` int(11) NOT NULL auto_increment,
-  `date` timestamp NULL default NULL COMMENT 'CURRENT_TIMESTAMP',
-  `fromID` int(11) default NULL,
-  `name` varchar(220) default NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` timestamp NULL DEFAULT NULL COMMENT 'CURRENT_TIMESTAMP',
+  `fromID` int(11) DEFAULT NULL,
+  `name` varchar(220) DEFAULT NULL,
   `content` text,
-  PRIMARY KEY  (`Id`)
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -710,12 +705,12 @@ INSERT INTO `diy_50_msg` VALUES ('1', '2015-10-30 10:02:03', '1', '淡淡的', '
 -- ----------------------------
 DROP TABLE IF EXISTS `diy_form`;
 CREATE TABLE `diy_form` (
-  `DF_ID` int(11) NOT NULL auto_increment COMMENT '自增长id',
+  `DF_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长id',
   `DF_TIPSNAME` varchar(30) NOT NULL COMMENT '自定义表单提示文字',
   `DF_TABLENAME` varchar(20) NOT NULL COMMENT '自定义表单表名',
   `DF_MANAGERID` int(11) NOT NULL COMMENT '自定义表单关联的关联员id',
-  `DF_APPID` int(11) default NULL COMMENT '自定义表单关联的应用编号',
-  PRIMARY KEY  (`DF_ID`)
+  `DF_APPID` int(11) DEFAULT NULL COMMENT '自定义表单关联的应用编号',
+  PRIMARY KEY (`DF_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='自定义表单表';
 
 -- ----------------------------
@@ -728,15 +723,15 @@ INSERT INTO `diy_form` VALUES ('2', '留言', 'diy_50_message', '50', '1549');
 -- ----------------------------
 DROP TABLE IF EXISTS `diy_form_field`;
 CREATE TABLE `diy_form_field` (
-  `DFF_ID` int(11) NOT NULL auto_increment COMMENT '字段自增长id',
-  `DFF_TIPSNAME` varchar(30) default NULL COMMENT '字段提示文字',
-  `DFF_FIELDNAME` varchar(20) default NULL COMMENT '字段名称',
-  `DFF_TYPE` int(11) default NULL COMMENT '字段类型（如1.单行，2.多行，3.图片，等）',
-  `DFF_DEFAULT` varchar(250) default NULL COMMENT '字段的默认值',
-  `DFF_ISNULL` int(11) default NULL COMMENT '字段是否为空',
-  `DFF_SORT` int(11) default NULL COMMENT '自定义表单的排序',
-  `DFF_FORMID` int(11) default NULL COMMENT '字段管理的表单id',
-  PRIMARY KEY  (`DFF_ID`)
+  `DFF_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '字段自增长id',
+  `DFF_TIPSNAME` varchar(30) DEFAULT NULL COMMENT '字段提示文字',
+  `DFF_FIELDNAME` varchar(20) DEFAULT NULL COMMENT '字段名称',
+  `DFF_TYPE` int(11) DEFAULT NULL COMMENT '字段类型（如1.单行，2.多行，3.图片，等）',
+  `DFF_DEFAULT` varchar(250) DEFAULT NULL COMMENT '字段的默认值',
+  `DFF_ISNULL` int(11) DEFAULT NULL COMMENT '字段是否为空',
+  `DFF_SORT` int(11) DEFAULT NULL COMMENT '自定义表单的排序',
+  `DFF_FORMID` int(11) DEFAULT NULL COMMENT '字段管理的表单id',
+  PRIMARY KEY (`DFF_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='自定义表单字段表';
 
 -- ----------------------------
@@ -751,14 +746,14 @@ INSERT INTO `diy_form_field` VALUES ('5', '内容', 'details', '1', '', '0', '0'
 -- ----------------------------
 DROP TABLE IF EXISTS `manager`;
 CREATE TABLE `manager` (
-  `MANAGER_ID` bigint(22) NOT NULL auto_increment COMMENT '管理员ID(主键)',
-  `MANAGER_NAME` varchar(15) default NULL COMMENT '管理员用户名',
-  `MANAGER_NICKNAME` varchar(15) default NULL COMMENT '管理员昵称',
-  `MANAGER_PASSWORD` varchar(45) default NULL COMMENT '管理员密码',
-  `MANAGER_ROLEID` bigint(22) default NULL COMMENT '角色编号',
-  `MANAGER_PEOPLEID` bigint(22) default '0' COMMENT '用户编号即商家编号',
-  `MANAGER_TIME` datetime default NULL COMMENT '管理员创建时间',
-  PRIMARY KEY  (`MANAGER_ID`)
+  `MANAGER_ID` bigint(22) NOT NULL AUTO_INCREMENT COMMENT '管理员ID(主键)',
+  `MANAGER_NAME` varchar(15) DEFAULT NULL COMMENT '管理员用户名',
+  `MANAGER_NICKNAME` varchar(15) DEFAULT NULL COMMENT '管理员昵称',
+  `MANAGER_PASSWORD` varchar(45) DEFAULT NULL COMMENT '管理员密码',
+  `MANAGER_ROLEID` bigint(22) DEFAULT NULL COMMENT '角色编号',
+  `MANAGER_PEOPLEID` bigint(22) DEFAULT '0' COMMENT '用户编号即商家编号',
+  `MANAGER_TIME` datetime DEFAULT NULL COMMENT '管理员创建时间',
+  PRIMARY KEY (`MANAGER_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
@@ -771,9 +766,9 @@ INSERT INTO `manager` VALUES ('50', 'msopen', 'msopen', '9d8622060de5f24937b6058
 -- ----------------------------
 DROP TABLE IF EXISTS `manager_model_page`;
 CREATE TABLE `manager_model_page` (
-  `mmp_managerID` int(11) default NULL COMMENT '自增长id',
-  `mmp_modelID` int(11) default NULL COMMENT '模块编号',
-  `mmp_url` varchar(255) default NULL COMMENT '默认后台显示的主界面'
+  `mmp_managerID` int(11) DEFAULT NULL COMMENT '自增长id',
+  `mmp_modelID` int(11) DEFAULT NULL COMMENT '模块编号',
+  `mmp_url` varchar(255) DEFAULT NULL COMMENT '默认后台显示的主界面'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台主界面管理表';
 
 -- ----------------------------
@@ -785,20 +780,20 @@ CREATE TABLE `manager_model_page` (
 -- ----------------------------
 DROP TABLE IF EXISTS `model`;
 CREATE TABLE `model` (
-  `MODEL_ID` int(22) NOT NULL auto_increment COMMENT '模块自增长id',
-  `MODEL_TITLE` varchar(150) default NULL COMMENT '模块标题',
-  `MODEL_CODE` varchar(255) default NULL COMMENT '模块编码',
-  `MODEL_MODELID` int(22) default NULL COMMENT '模块的父模块id',
-  `MODEL_URL` varchar(255) default NULL COMMENT '模块连接地址',
-  `MODEL_DATETIME` datetime default NULL,
-  `MODEL_ICON` varchar(120) default NULL COMMENT '模块图标',
-  `MODEL_MODELMANAGERID` int(11) default NULL COMMENT '模块关联的关联员id',
-  `MODEL_SORT` int(11) default NULL COMMENT '模块的排序',
-  `MODEL_ISMENU` int(1) default NULL COMMENT '模块是否是菜单',
-  PRIMARY KEY  (`MODEL_ID`),
+  `MODEL_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '模块自增长id',
+  `MODEL_TITLE` varchar(150) DEFAULT NULL COMMENT '模块标题',
+  `MODEL_CODE` varchar(255) DEFAULT NULL COMMENT '模块编码',
+  `MODEL_MODELID` int(22) DEFAULT NULL COMMENT '模块的父模块id',
+  `MODEL_URL` varchar(255) DEFAULT NULL COMMENT '模块连接地址',
+  `MODEL_DATETIME` datetime DEFAULT NULL,
+  `MODEL_ICON` varchar(120) DEFAULT NULL COMMENT '模块图标',
+  `MODEL_MODELMANAGERID` int(11) DEFAULT NULL COMMENT '模块关联的关联员id',
+  `MODEL_SORT` int(11) DEFAULT NULL COMMENT '模块的排序',
+  `MODEL_ISMENU` int(1) DEFAULT NULL COMMENT '模块是否是菜单',
+  PRIMARY KEY (`MODEL_ID`),
   UNIQUE KEY `SYS_C009201` (`MODEL_ID`),
   KEY `MODEL_MODELID` (`MODEL_MODELID`),
-  KEY `model_code` USING BTREE (`MODEL_CODE`)
+  KEY `model_code` (`MODEL_CODE`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='模块表';
 
 -- ----------------------------
@@ -831,16 +826,16 @@ INSERT INTO `model` VALUES ('91', '模板管理', '12020000', '84', '/manager/cm
 -- ----------------------------
 DROP TABLE IF EXISTS `model_template`;
 CREATE TABLE `model_template` (
-  `mt_id` int(11) NOT NULL auto_increment COMMENT '自增长id',
-  `mt_modelID` int(11) default NULL COMMENT '模块id',
-  `mt_appID` int(11) default NULL COMMENT '应用id',
-  `mt_path` varchar(255) default NULL COMMENT '自定义页面绑定模板的路径',
-  `mt_title` varchar(255) default NULL COMMENT '自定义页面标题',
-  `mt_key` varchar(255) default NULL COMMENT '自定义页面访问路径',
-  PRIMARY KEY  (`mt_id`),
-  KEY `mt_key` USING BTREE (`mt_key`),
+  `mt_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长id',
+  `mt_modelID` int(11) DEFAULT NULL COMMENT '模块id',
+  `mt_appID` int(11) DEFAULT NULL COMMENT '应用id',
+  `mt_path` varchar(255) DEFAULT NULL COMMENT '自定义页面绑定模板的路径',
+  `mt_title` varchar(255) DEFAULT NULL COMMENT '自定义页面标题',
+  `mt_key` varchar(255) DEFAULT NULL COMMENT '自定义页面访问路径',
+  PRIMARY KEY (`mt_id`),
+  KEY `mt_key` (`mt_key`) USING BTREE,
   KEY `mt_appID` (`mt_appID`),
-  KEY `mt_modelID` USING BTREE (`mt_modelID`)
+  KEY `mt_modelID` (`mt_modelID`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='自定义页面表';
 
 -- ----------------------------
@@ -852,19 +847,19 @@ CREATE TABLE `model_template` (
 -- ----------------------------
 DROP TABLE IF EXISTS `people`;
 CREATE TABLE `people` (
-  `PEOPLE_ID` int(11) NOT NULL auto_increment COMMENT '增长自ID',
-  `PEOPLE_PHONE` varchar(30) default NULL COMMENT '手机号码',
-  `PEOPLE_NAME` varchar(30) default NULL COMMENT '陆登账号',
-  `PEOPLE_PASSWORD` varchar(50) default NULL COMMENT '陆登密码',
+  `PEOPLE_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '增长自ID',
+  `PEOPLE_PHONE` varchar(30) DEFAULT NULL COMMENT '手机号码',
+  `PEOPLE_NAME` varchar(30) DEFAULT NULL COMMENT '陆登账号',
+  `PEOPLE_PASSWORD` varchar(50) DEFAULT NULL COMMENT '陆登密码',
   `PEOPLE_DATETIME` datetime NOT NULL COMMENT '注册时间',
   `PEOPLE_APP_ID` int(11) NOT NULL COMMENT '用户所属用户ID',
-  `PEOPLE_MAIL` varchar(120) default NULL COMMENT '用户邮箱',
-  `PEOPLE_STATE` int(2) default '0' COMMENT '用户状态',
-  `PEOPLE_CODE` varchar(15) default NULL COMMENT '随机验证码',
-  `PEOPLE_CODESENDDATE` datetime default NULL,
-  `PEOPLE_PHONECHECK` int(1) default NULL,
-  `PEOPLE_MAILLCHECK` int(1) default NULL,
-  PRIMARY KEY  (`PEOPLE_ID`)
+  `PEOPLE_MAIL` varchar(120) DEFAULT NULL COMMENT '用户邮箱',
+  `PEOPLE_STATE` int(2) DEFAULT '0' COMMENT '用户状态',
+  `PEOPLE_CODE` varchar(15) DEFAULT NULL COMMENT '随机验证码',
+  `PEOPLE_CODESENDDATE` datetime DEFAULT NULL,
+  `PEOPLE_PHONECHECK` int(1) DEFAULT NULL,
+  `PEOPLE_MAILLCHECK` int(1) DEFAULT NULL,
+  PRIMARY KEY (`PEOPLE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='户用基础表';
 
 -- ----------------------------
@@ -877,16 +872,16 @@ CREATE TABLE `people` (
 DROP TABLE IF EXISTS `people_user`;
 CREATE TABLE `people_user` (
   `PU_PEOPLE_ID` int(11) NOT NULL COMMENT '用户ID关联people表的（people_id）',
-  `PU_REAL_NAME` varchar(50) default NULL COMMENT '用户真实名称',
-  `PU_ADDRESS` varchar(200) default NULL COMMENT '用户地址',
-  `PU_ICON` varchar(120) default NULL COMMENT '用户头像图标地址',
-  `PU_NICKNAME` varchar(50) default NULL COMMENT '用户昵称',
-  `PU_SEX` int(2) default NULL COMMENT '用户性别(0.未知、1.男、2.女)',
-  `PU_BIRTHDAY` date default NULL COMMENT '用户出生年月日',
-  `PU_CARD` varchar(255) default NULL COMMENT '身份证',
+  `PU_REAL_NAME` varchar(50) DEFAULT NULL COMMENT '用户真实名称',
+  `PU_ADDRESS` varchar(200) DEFAULT NULL COMMENT '用户地址',
+  `PU_ICON` varchar(120) DEFAULT NULL COMMENT '用户头像图标地址',
+  `PU_NICKNAME` varchar(50) DEFAULT NULL COMMENT '用户昵称',
+  `PU_SEX` int(2) DEFAULT NULL COMMENT '用户性别(0.未知、1.男、2.女)',
+  `PU_BIRTHDAY` date DEFAULT NULL COMMENT '用户出生年月日',
+  `PU_CARD` varchar(255) DEFAULT NULL COMMENT '身份证',
   `PU_APP_ID` int(11) NOT NULL COMMENT '用户所属应用ID',
-  PRIMARY KEY  (`PU_PEOPLE_ID`),
-  KEY `PU_PEOPLE_ID` USING BTREE (`PU_PEOPLE_ID`)
+  PRIMARY KEY (`PU_PEOPLE_ID`),
+  KEY `PU_PEOPLE_ID` (`PU_PEOPLE_ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户基础信息表';
 
 -- ----------------------------
@@ -898,10 +893,10 @@ CREATE TABLE `people_user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `ROLE_ID` bigint(22) NOT NULL auto_increment COMMENT '角色ID，自增长',
-  `ROLE_NAME` varchar(30) default NULL COMMENT '角色名',
-  `ROLE_MANAGERID` bigint(22) default '0' COMMENT '角色管理员编号',
-  PRIMARY KEY  (`ROLE_ID`)
+  `ROLE_ID` bigint(22) NOT NULL AUTO_INCREMENT COMMENT '角色ID，自增长',
+  `ROLE_NAME` varchar(30) DEFAULT NULL COMMENT '角色名',
+  `ROLE_MANAGERID` bigint(22) DEFAULT '0' COMMENT '角色管理员编号',
+  PRIMARY KEY (`ROLE_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
@@ -914,10 +909,10 @@ INSERT INTO `role` VALUES ('48', 'msopen', '50');
 -- ----------------------------
 DROP TABLE IF EXISTS `role_model`;
 CREATE TABLE `role_model` (
-  `RM_MODELID` int(22) default NULL COMMENT '模块编号',
-  `RM_ROLEID` int(22) default NULL COMMENT '角色编号',
+  `RM_MODELID` int(22) DEFAULT NULL COMMENT '模块编号',
+  `RM_ROLEID` int(22) DEFAULT NULL COMMENT '角色编号',
   UNIQUE KEY `index` (`RM_MODELID`,`RM_ROLEID`),
-  KEY `RM_MODELID` USING BTREE (`RM_MODELID`),
+  KEY `RM_MODELID` (`RM_MODELID`) USING BTREE,
   CONSTRAINT `role_model_ibfk_1` FOREIGN KEY (`RM_MODELID`) REFERENCES `model` (`MODEL_ID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色模块关联表';
 
@@ -951,10 +946,10 @@ INSERT INTO `role_model` VALUES ('91', '48');
 -- ----------------------------
 DROP TABLE IF EXISTS `system_main_page`;
 CREATE TABLE `system_main_page` (
-  `smp_appID` int(11) default NULL COMMENT '自增长ID',
-  `smp_url` varchar(255) default NULL COMMENT '默认后台显示的主界面',
-  `smp_modelID` int(11) default NULL COMMENT '模块编号',
-  `smp_managerID` int(11) default NULL COMMENT '管理员编号'
+  `smp_appID` int(11) DEFAULT NULL COMMENT '自增长ID',
+  `smp_url` varchar(255) DEFAULT NULL COMMENT '默认后台显示的主界面',
+  `smp_modelID` int(11) DEFAULT NULL COMMENT '模块编号',
+  `smp_managerID` int(11) DEFAULT NULL COMMENT '管理员编号'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台主界面管理界面';
 
 -- ----------------------------
@@ -966,15 +961,15 @@ CREATE TABLE `system_main_page` (
 -- ----------------------------
 DROP TABLE IF EXISTS `system_skin`;
 CREATE TABLE `system_skin` (
-  `ss_id` int(11) NOT NULL auto_increment COMMENT '自增长ID',
-  `ss_loginpage` varchar(255) default NULL COMMENT '登陆页面',
-  `ss_backgroundimg` varchar(255) default NULL COMMENT '背景图片',
-  `ss_color` varchar(255) default NULL COMMENT '字体颜色',
-  `ss_css` varchar(255) default NULL COMMENT '样式',
-  `ss_datetime` datetime default NULL COMMENT '生成时间',
-  `ss_appID` int(11) default NULL COMMENT '0后台发布大于０表示是应用自定义',
-  `ss_categoryID` int(11) default NULL COMMENT '主题分类',
-  PRIMARY KEY  (`ss_id`)
+  `ss_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
+  `ss_loginpage` varchar(255) DEFAULT NULL COMMENT '登陆页面',
+  `ss_backgroundimg` varchar(255) DEFAULT NULL COMMENT '背景图片',
+  `ss_color` varchar(255) DEFAULT NULL COMMENT '字体颜色',
+  `ss_css` varchar(255) DEFAULT NULL COMMENT '样式',
+  `ss_datetime` datetime DEFAULT NULL COMMENT '生成时间',
+  `ss_appID` int(11) DEFAULT NULL COMMENT '0后台发布大于０表示是应用自定义',
+  `ss_categoryID` int(11) DEFAULT NULL COMMENT '主题分类',
+  PRIMARY KEY (`ss_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='后台皮肤管理表';
 
 -- ----------------------------
@@ -986,9 +981,9 @@ CREATE TABLE `system_skin` (
 -- ----------------------------
 DROP TABLE IF EXISTS `system_skin_manager`;
 CREATE TABLE `system_skin_manager` (
-  `ssm_managerID` int(11) NOT NULL default '0' COMMENT '系统管理员编号',
-  `ssm_system_skin_ID` int(11) default NULL COMMENT '系统皮肤管理员编号',
-  PRIMARY KEY  (`ssm_managerID`)
+  `ssm_managerID` int(11) NOT NULL DEFAULT '0' COMMENT '系统管理员编号',
+  `ssm_system_skin_ID` int(11) DEFAULT NULL COMMENT '系统皮肤管理员编号',
+  PRIMARY KEY (`ssm_managerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='系统皮肤与管理员关联表';
 
 -- ----------------------------
@@ -996,23 +991,156 @@ CREATE TABLE `system_skin_manager` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `wx_menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_menu`;
+CREATE TABLE `wx_menu` (
+  `MENU_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '菜单自增长编号',
+  `MENU_APP_ID` int(22) DEFAULT NULL COMMENT '菜单所属商家编号',
+  `MENU_TITLE` varchar(15) DEFAULT NULL COMMENT '单菜名称',
+  `MENU_URL` text COMMENT '单菜链接地址',
+  `MENU_STATUS` int(1) DEFAULT NULL COMMENT '菜单状态 0：不启用 1：启用',
+  `MENU_MENU_ID` int(22) DEFAULT NULL COMMENT '父菜单编号',
+  `MENU_TYPE` int(2) DEFAULT NULL COMMENT '菜单属性 0:链接 1:回复',
+  `MENU_SORT` int(11) DEFAULT NULL,
+  `MENU_STYLE` int(11) DEFAULT NULL,
+  `MENU_OAUTH_ID` int(11) NOT NULL COMMENT '授权数据编号',
+  `MENU_WEIXIN_ID` int(11) DEFAULT NULL COMMENT '微信编号',
+  PRIMARY KEY (`MENU_ID`,`MENU_OAUTH_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信菜单';
+
+-- ----------------------------
+-- Records of wx_menu
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_news`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_news`;
+CREATE TABLE `wx_news` (
+  `news_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_type` int(11) DEFAULT '2' COMMENT '素材类型　1.图文 2.文本 3.图片',
+  `news_master_article_id` int(11) DEFAULT '0' COMMENT '图文素材时有效,主图文id',
+  `news_child_article_ids` varchar(255) DEFAULT NULL COMMENT '图文素材有效',
+  `news_datetime` datetime DEFAULT NULL,
+  `news_App_Id` int(11) DEFAULT '0',
+  `news_content` text,
+  `news_category_ID` int(11) DEFAULT NULL,
+  `news_weixin_ID` int(11) DEFAULT NULL COMMENT '微信编号',
+  PRIMARY KEY (`news_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wx_news
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_passive_message`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_passive_message`;
+CREATE TABLE `wx_passive_message` (
+  `PM_WEIXIN_ID` int(11) NOT NULL COMMENT '微信编号',
+  `PM_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
+  `PM_EVENT_ID` int(22) NOT NULL COMMENT '该回复属于的分类中的事件ID,1新关注2二维码扫描5未关注扫描二维码6点击事件4文本消息3二维码扫描&提示框',
+  `PM_NEWS_ID` int(22) DEFAULT '0' COMMENT '回复的素材ID',
+  `PM_MESSAGE_ID` int(11) NOT NULL COMMENT '对应自定义模板回复消息id,与PM_NEWS_ID只能同时存在一个',
+  `PM_APP_ID` int(22) NOT NULL COMMENT '该回复所属的应用ID',
+  `PM_REPLY_NUM` int(22) DEFAULT '0' COMMENT '被动回复的次数;为1时表示用户第一次被动响应消息,依次递增,当超出时取值为0的进行回复',
+  `PM_KEY` varchar(300) DEFAULT NULL COMMENT '事件关键字',
+  `PM_TYPE` int(2) NOT NULL COMMENT '回复属性:1.最终回复;达到迭代次数之后的回复消息,2.拓展回复迭代回复(优先迭代回复)',
+  `PM_TAG` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`PM_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信被动消息回复';
+
+-- ----------------------------
+-- Records of wx_passive_message
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_passive_message_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_passive_message_log`;
+CREATE TABLE `wx_passive_message_log` (
+  `PML_WEIXIN_ID` int(11) NOT NULL COMMENT '微信编号',
+  `PML_ID` int(22) NOT NULL AUTO_INCREMENT COMMENT '自增长ID',
+  `PML_APP_ID` int(22) NOT NULL COMMENT '关键的应用ID',
+  `PML_PEOPLE_ID` int(22) NOT NULL COMMENT '关联用户ID',
+  `PML_PASSIVE_MESSAGE_ID` int(22) NOT NULL COMMENT '关联被动回复消息ID',
+  `PML_EVENT_ID` int(22) NOT NULL COMMENT '关联事件分类ID',
+  `PML_TIME` datetime NOT NULL COMMENT '日志生成时间',
+  `PML_KEY` varchar(300) DEFAULT NULL COMMENT '关键字',
+  PRIMARY KEY (`PML_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1201 DEFAULT CHARSET=utf8 COMMENT='被动回复消息日志记录';
+
+-- ----------------------------
+-- Records of wx_passive_message_log
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_people`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_people`;
+CREATE TABLE `wx_people` (
+  `PW_WEIXIN_ID` int(11) NOT NULL,
+  `PW_PEOPLE_ID` int(22) NOT NULL DEFAULT '0' COMMENT '关联用户基本信息ID',
+  `PW_APP_ID` int(22) DEFAULT NULL COMMENT '用户所关注微信号的ID',
+  `PW_OPEN_ID` varchar(100) DEFAULT NULL COMMENT '户用在微信中的唯一标识',
+  `PW_PEOPLE_STATE` int(2) DEFAULT NULL,
+  `PW_PROVINCE` varchar(50) DEFAULT NULL COMMENT '用户所在省份',
+  `PW_CITY` varchar(50) DEFAULT NULL COMMENT '户用所在城市',
+  `PW_HEADIMG_URL` varchar(500) DEFAULT NULL COMMENT '户用头像链接地址',
+  PRIMARY KEY (`PW_PEOPLE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of wx_people
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `wx_weixin`
+-- ----------------------------
+DROP TABLE IF EXISTS `wx_weixin`;
+CREATE TABLE `wx_weixin` (
+  `WEIXIN_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `APP_ID` int(22) NOT NULL COMMENT '微信公众号所属用户编号',
+  `WEIXIN_NO` varchar(30) DEFAULT NULL COMMENT '信号号',
+  `WEIXIN_ORIGIN_ID` varchar(30) DEFAULT NULL COMMENT '微信原始ID',
+  `WEIXIN_NAME` varchar(30) NOT NULL COMMENT '众号公名称',
+  `WEIXIN_TYPE` int(1) NOT NULL DEFAULT '0' COMMENT '信微号类型 0：服务号 1：订阅号',
+  `WEIXIN_TOKEN` varchar(30) DEFAULT NULL COMMENT '信微token',
+  `WEIXIN_IMAGE` varchar(100) DEFAULT NULL COMMENT '信微二维码图片',
+  `WEIXIN_APPID` varchar(150) NOT NULL COMMENT '用应编号',
+  `WEIXIN_APPSECRET` varchar(150) NOT NULL COMMENT '用应授权码',
+  `WEIXIN_HEADIMG` varchar(150) DEFAULT NULL COMMENT '信微帐号头像',
+  `WEIXIN_MCHID` varchar(255) DEFAULT NULL COMMENT '微信支付商户号',
+  `WEIXIN_PAYKEY` varchar(255) DEFAULT NULL COMMENT '支付key',
+  `WEIXIN_RROXY_URL` varchar(500) DEFAULT NULL COMMENT '微信内网测试地址',
+  `WEIXIN_OAUTH_URL` varchar(200) DEFAULT NULL COMMENT '网页2.0授权地址,需要加http',
+  PRIMARY KEY (`WEIXIN_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=' 微信公众帐号';
+
+-- ----------------------------
+-- Records of wx_weixin
+-- ----------------------------
+
+-- ----------------------------
 -- View structure for `v_article`
 -- ----------------------------
 DROP VIEW IF EXISTS `v_article`;
-CREATE VIEW `v_article` AS select `cms_article`.`ARTICLE_BASICID` AS `ARTICLE_BASICID`,`basic`.`BASIC_ID` AS `BASIC_ID`,`basic`.`BASIC_CATEGORYID` AS `BASIC_CATEGORYID`,`basic`.`BASIC_TITLE` AS `BASIC_TITLE`,`basic`.`BASIC_DESCRIPTION` AS `BASIC_DESCRIPTION`,`basic`.`BASIC_THUMBNAILS` AS `BASIC_THUMBNAILS`,`basic`.`BASIC_HIT` AS `BASIC_HIT`,`basic`.`BASIC_DATETIME` AS `BASIC_DATETIME`,`basic`.`BASIC_UPDATETIME` AS `BASIC_UPDATETIME`,`basic`.`BASIC_PEOPLEID` AS `BASIC_PEOPLEID`,`cms_article`.`ARTICLE_AUTHOR` AS `ARTICLE_AUTHOR`,`cms_article`.`ARTICLE_CONTENT` AS `ARTICLE_CONTENT`,`cms_article`.`ARTICLE_TYPE` AS `ARTICLE_TYPE`,`cms_article`.`ARTICLE_SOURCE` AS `ARTICLE_SOURCE`,`cms_article`.`ARTICLE_URL` AS `ARTICLE_URL`,`cms_article`.`ARTICLE_KEYWORD` AS `ARTICLE_KEYWORD`,`cms_article`.`ARTICLE_FREEORDER` AS `ARTICLE_FREEORDER`,`cms_article`.`ARTICLE_WEBID` AS `ARTICLE_WEBID`,`cms_column`.`COLUMN_KEYWORD` AS `COLUMN_KEYWORD`,`cms_column`.`COLUMN_DESCRIP` AS `COLUMN_DESCRIP`,`cms_column`.`COLUMN_TYPE` AS `COLUMN_TYPE`,`cms_column`.`COLUMN_URL` AS `COLUMN_URL`,`cms_column`.`COLUMN_LISTURL` AS `COLUMN_LISTURL`,`cms_column`.`COLUMN_TENTMODELID` AS `COLUMN_TENTMODELID`,`cms_column`.`COLUMN_WEBSITEID` AS `COLUMN_WEBSITEID`,`cms_column`.`COLUMN_PATH` AS `column_path`,`cms_column`.`COLUMN_CONTENTMODELID` AS `COLUMN_CONTENTMODELID`,`category`.`CATEGORY_TITLE` AS `CATEGORY_TITLE`,`category`.`CATEGORY_APPID` AS `CATEGORY_APPID`,`cms_column`.`COLUMN_CATEGORYID` AS `COLUMN_CATEGORYID`,`category`.`CATEGORY_ID` AS `CATEGORY_ID`,`basic`.`BASIC_SORT` AS `BASIC_SORT` from (((`basic` join `cms_article` on((`basic`.`BASIC_ID` = `cms_article`.`ARTICLE_BASICID`))) join `cms_column` on((`basic`.`BASIC_CATEGORYID` = `cms_column`.`COLUMN_CATEGORYID`))) join `category` on((`cms_column`.`COLUMN_CATEGORYID` = `category`.`CATEGORY_ID`)));
+CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `v_article` AS select `cms_article`.`ARTICLE_BASICID` AS `ARTICLE_BASICID`,`basic`.`BASIC_ID` AS `BASIC_ID`,`basic`.`BASIC_CATEGORYID` AS `BASIC_CATEGORYID`,`basic`.`BASIC_TITLE` AS `BASIC_TITLE`,`basic`.`BASIC_DESCRIPTION` AS `BASIC_DESCRIPTION`,`basic`.`BASIC_THUMBNAILS` AS `BASIC_THUMBNAILS`,`basic`.`BASIC_HIT` AS `BASIC_HIT`,`basic`.`BASIC_DATETIME` AS `BASIC_DATETIME`,`basic`.`BASIC_UPDATETIME` AS `BASIC_UPDATETIME`,`basic`.`BASIC_PEOPLEID` AS `BASIC_PEOPLEID`,`cms_article`.`ARTICLE_AUTHOR` AS `ARTICLE_AUTHOR`,`cms_article`.`ARTICLE_CONTENT` AS `ARTICLE_CONTENT`,`cms_article`.`ARTICLE_TYPE` AS `ARTICLE_TYPE`,`cms_article`.`ARTICLE_SOURCE` AS `ARTICLE_SOURCE`,`cms_article`.`ARTICLE_URL` AS `ARTICLE_URL`,`cms_article`.`ARTICLE_KEYWORD` AS `ARTICLE_KEYWORD`,`cms_article`.`ARTICLE_FREEORDER` AS `ARTICLE_FREEORDER`,`cms_article`.`ARTICLE_WEBID` AS `ARTICLE_WEBID`,`cms_column`.`COLUMN_KEYWORD` AS `COLUMN_KEYWORD`,`cms_column`.`COLUMN_DESCRIP` AS `COLUMN_DESCRIP`,`cms_column`.`COLUMN_TYPE` AS `COLUMN_TYPE`,`cms_column`.`COLUMN_URL` AS `COLUMN_URL`,`cms_column`.`COLUMN_LISTURL` AS `COLUMN_LISTURL`,`cms_column`.`COLUMN_TENTMODELID` AS `COLUMN_TENTMODELID`,`cms_column`.`COLUMN_WEBSITEID` AS `COLUMN_WEBSITEID`,`cms_column`.`COLUMN_PATH` AS `column_path`,`cms_column`.`COLUMN_CONTENTMODELID` AS `COLUMN_CONTENTMODELID`,`category`.`CATEGORY_TITLE` AS `CATEGORY_TITLE`,`category`.`CATEGORY_APPID` AS `CATEGORY_APPID`,`cms_column`.`COLUMN_CATEGORYID` AS `COLUMN_CATEGORYID`,`category`.`CATEGORY_ID` AS `CATEGORY_ID`,`basic`.`BASIC_SORT` AS `BASIC_SORT` from (((`basic` join `cms_article` on((`basic`.`BASIC_ID` = `cms_article`.`ARTICLE_BASICID`))) join `cms_column` on((`basic`.`BASIC_CATEGORYID` = `cms_column`.`COLUMN_CATEGORYID`))) join `category` on((`cms_column`.`COLUMN_CATEGORYID` = `category`.`CATEGORY_ID`)));
 
 -- ----------------------------
 -- View structure for `v_people_user`
 -- ----------------------------
 DROP VIEW IF EXISTS `v_people_user`;
-CREATE  VIEW `v_people_user` AS select `people`.`PEOPLE_ID` AS `PEOPLE_ID`,`people`.`PEOPLE_PHONE` AS `PEOPLE_PHONE`,`people`.`PEOPLE_NAME` AS `PEOPLE_NAME`,`people`.`PEOPLE_PASSWORD` AS `PEOPLE_PASSWORD`,`people`.`PEOPLE_DATETIME` AS `PEOPLE_DATETIME`,`people`.`PEOPLE_APP_ID` AS `PEOPLE_APP_ID`,`people`.`PEOPLE_MAIL` AS `PEOPLE_MAIL`,`people`.`PEOPLE_STATE` AS `PEOPLE_STATE`,`people`.`PEOPLE_CODE` AS `PEOPLE_CODE`,`people`.`PEOPLE_CODESENDDATE` AS `PEOPLE_CODESENDDATE`,`people`.`PEOPLE_PHONECHECK` AS `PEOPLE_PHONECHECK`,`people`.`PEOPLE_MAILLCHECK` AS `PEOPLE_MAILLCHECK`,`people_user`.`PU_PEOPLE_ID` AS `PU_PEOPLE_ID`,`people_user`.`PU_REAL_NAME` AS `PU_REAL_NAME`,`people_user`.`PU_ADDRESS` AS `PU_ADDRESS`,`people_user`.`PU_ICON` AS `PU_ICON`,`people_user`.`PU_NICKNAME` AS `PU_NICKNAME`,`people_user`.`PU_SEX` AS `PU_SEX`,`people_user`.`PU_BIRTHDAY` AS `PU_BIRTHDAY`,`people_user`.`PU_CARD` AS `PU_CARD`,`people_user`.`PU_APP_ID` AS `PU_APP_ID` from (`people` left join `people_user` on((`people`.`PEOPLE_ID` = `people_user`.`PU_PEOPLE_ID`)));
+CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `v_people_user` AS select `people`.`PEOPLE_ID` AS `PEOPLE_ID`,`people`.`PEOPLE_PHONE` AS `PEOPLE_PHONE`,`people`.`PEOPLE_NAME` AS `PEOPLE_NAME`,`people`.`PEOPLE_PASSWORD` AS `PEOPLE_PASSWORD`,`people`.`PEOPLE_DATETIME` AS `PEOPLE_DATETIME`,`people`.`PEOPLE_APP_ID` AS `PEOPLE_APP_ID`,`people`.`PEOPLE_MAIL` AS `PEOPLE_MAIL`,`people`.`PEOPLE_STATE` AS `PEOPLE_STATE`,`people`.`PEOPLE_CODE` AS `PEOPLE_CODE`,`people`.`PEOPLE_CODESENDDATE` AS `PEOPLE_CODESENDDATE`,`people`.`PEOPLE_PHONECHECK` AS `PEOPLE_PHONECHECK`,`people`.`PEOPLE_MAILLCHECK` AS `PEOPLE_MAILLCHECK`,`people_user`.`PU_PEOPLE_ID` AS `PU_PEOPLE_ID`,`people_user`.`PU_REAL_NAME` AS `PU_REAL_NAME`,`people_user`.`PU_ADDRESS` AS `PU_ADDRESS`,`people_user`.`PU_ICON` AS `PU_ICON`,`people_user`.`PU_NICKNAME` AS `PU_NICKNAME`,`people_user`.`PU_SEX` AS `PU_SEX`,`people_user`.`PU_BIRTHDAY` AS `PU_BIRTHDAY`,`people_user`.`PU_CARD` AS `PU_CARD`,`people_user`.`PU_APP_ID` AS `PU_APP_ID` from (`people` left join `people_user` on((`people`.`PEOPLE_ID` = `people_user`.`PU_PEOPLE_ID`)));
 
 -- ----------------------------
 -- Procedure structure for `p_getAllChildren`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `p_getAllChildren`;
-DELIMITER ;;
-CREATE PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
+
+CREATE  PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
 BEGIN
 	
    declare lev int;
@@ -1030,5 +1158,5 @@ BEGIN
   end while ;    
   INSERT tmp_category SELECT c.category_id,c.category_title,c.category_categoryid,0 FROM category  c WHERE c.category_id=pid and c.category_appid=appId and c.category_modelId=modelId;   
   SELECT * FROM tmp_category;
-END;;
-DELIMITER ;
+END
+
