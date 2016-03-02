@@ -1,6 +1,21 @@
 #基于Dockerfile部署应用的注意事项
-![Docker-container](http://a.oss.yihuonet.com/storage/Docker-container.png)      
+![Docker-container](http://a.oss.yihuonet.com/storage/Docker-container.png)（JavaCMS系统专用）      
 更新于：2016/1/25 11:44:38    | E-mail:kai.zhu#yihuonet.com (替换#为@)    
+本文适用于手动将程序和数据库分别部署的。
+
+##基本定义
+###1.程序Docker镜像：    
+  镜像形如 daocloud.io/yihuo/mcms-general-2    
+  构建位置 https://github.com/yihuo/javacms\General-2\Dockerfile
+###2.数据库Docker镜像：    
+  镜像形如 daocloud.io/yihuo/mcms-general-2-mysql    
+  构建位置 https://github.com/yihuo/javacms\General-2\MySQL\Dockerfile
+
+其中，general-2表示的是javacms的系列名称，自行替换区分大小写。    
+
+[点击这里进入Docker Stack自动构建传送门（含程序和数据库一次性建立两个容器，并建立联系）](README-Stack.html "[README-Stack.html]")，进入下一节。    
+[点击这里进入Docker Stack自动构建传送门-in Github（含程序和数据库一次性建立两个容器，并建立联系）](README-Stack.md "[README-Stack.md]")，进入下一节。    
+
 
 ##程序部分
 ##1.环境变量
@@ -41,4 +56,3 @@
 | 容器路径 | 主机路径 |
 |:-------:|:-------:|
 |/var/lib/mysql|/data/[$Your_app_name]/mysql|
-|/docker-entrypoint-initdb.d|/data/[$Your_app_name]/mysql-init|
