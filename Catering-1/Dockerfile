@@ -4,8 +4,8 @@ MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
 ENV REFRESHED_AT 2016-03-02 15:49
 
 #Version Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
-ENV YIHUONET_MCMS_SERIES general-3
-ENV YIHUONET_MCMS_VER 1.0.1
+ENV YIHUONET_MCMS_SERIES catering-1
+ENV YIHUONET_MCMS_VER 1.0.0
 ENV YIHUONET_MCMS_FILENAME mcms-$YIHUONET_MCMS_SERIES-v$YIHUONET_MCMS_VER.zip
 ########################################
 # History  

@@ -1139,16 +1139,16 @@ CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `v_people_user` AS select 
 -- Procedure structure for `p_getAllChildren`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `p_getAllChildren`;
-
-CREATE  PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
+DELIMITER ;;
+CREATE PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
 BEGIN
 	
    declare lev int;
    set lev=1;
    drop TEMPORARY table if exists tmp_category;    
    drop TEMPORARY table if exists tmp_category_child;    
-   CREATE  TEMPORARY TABLE  tmp_category(category_id int(40),category_title varchar(50),category_categoryid varchar(40) ,lev INT) ;    
-   CREATE  TEMPORARY TABLE  tmp_category_child(category_id int(40),category_title varchar(50),category_categoryid varchar(40) ,lev INT) ;    
+   CREATE  TEMPORARY TABLE  tmp_category(category_id int(40),category_title varchar(50),category_categoryid varchar(40) ,lev INT);    
+   CREATE  TEMPORARY TABLE  tmp_category_child(category_id int(40),category_title varchar(50),category_categoryid varchar(40) ,lev INT);    
    INSERT tmp_category SELECT category_id,category_title,category_categoryid,1 FROM `category` WHERE category_categoryid=pid and category_appid=appId and category_modelId=modelId;    
    INSERT tmp_category_child SELECT category_id,category_title,category_categoryid,1 FROM `category` WHERE category_categoryid=pid and category_appid=appId and category_modelId=modelId;   
   while ROW_COUNT()>0 
@@ -1158,5 +1158,6 @@ BEGIN
   end while ;    
   INSERT tmp_category SELECT c.category_id,c.category_title,c.category_categoryid,0 FROM category  c WHERE c.category_id=pid and c.category_appid=appId and c.category_modelId=modelId;   
   SELECT * FROM tmp_category;
-END
+END;;
+DELIMITER ;
 
