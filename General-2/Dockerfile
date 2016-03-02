@@ -1,7 +1,7 @@
 #Base Define
-FROM daocloud.io/library/java:7-jre
+FROM tomcat:7-jre7
 MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
-ENV REFRESHED_AT 2016-01-25 13:19
+ENV REFRESHED_AT 2016-03-02 15:48
 
 #Version Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
 ENV YIHUONET_MCMS_SERIES general-2
@@ -11,24 +11,8 @@ ENV YIHUONET_MCMS_FILENAME mcms-$YIHUONET_MCMS_SERIES-v$YIHUONET_MCMS_VER.zip
 # History  
 # 2015-01-20 v0.1.0 Based by General-1 dockerfile
 # 2016-01-25 v1.0.0 Final version update
+# 2016-03-02 v1.0.1 Optimize dockerfile
 ########################################
-########################################
-#Official Code by docker-library, https://hub.docker.com/_/tomcat/
-
-ENV CATALINA_HOME /usr/local/tomcat
-ENV PATH $CATALINA_HOME/bin:$PATH
-RUN mkdir -p "$CATALINA_HOME"
-WORKDIR $CATALINA_HOME
-
-ENV TOMCAT_MAJOR 7
-ENV TOMCAT_VERSION 7.0.68
-ENV TOMCAT_TGZ_URL http://mirrors.aliyun.com/apache/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
-
-RUN set -x \
-	&& curl "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \
-	&& tar -xvf tomcat.tar.gz --strip-components=1 \
-	&& rm bin/*.bat \
-	&& rm tomcat.tar.gz*
 
 #########################################[START]!Pause official code to deploy yihuonet code.
 ENV TOMCAT_ORIGIN_ROOT webapps/ROOT
@@ -46,33 +30,4 @@ RUN apt-get install -y wget unzip \
     && cd $CATALINA_HOME/webapps \
 	&& mv manager management
 ADD tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
-#########################################[END]!Recovery official code to deploy yihuonet code.
-WORKDIR $CATALINA_HOME
 
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
-
-#Base Define
-FROM daocloud.io/library/mysql:5.5
-MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
-ENV REFRESHED_AT 2016-01-28 13:27
-
-#Version and sqlname Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
-# History  
-# 2016-02-27 v0.0.1 First Version
-########################################
-#Add UTF-8 Support
-RUN { \
-    echo '[mysqld]'; \
-    echo 'character-set-server = utf8'; \
-    echo 'default-collation = utf8_unicode_ci'; \
-} > /etc/mysql/conf.d/charset.cnf
-
-#Import scripts in here
-ADD script/ /docker-entrypoint-initdb.d/
-
-#MySQL passwd and port
-ENV MYSQL_ROOT_PASSWORD my-secret-pw
-ENV MYSQL_DATABASE mcms
-ENV MYSQL_USER mcms
-ENV MYSQL_PASSWORD mcmsmcms
