@@ -1139,7 +1139,6 @@ CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `v_people_user` AS select 
 -- Procedure structure for `p_getAllChildren`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `p_getAllChildren`;
-
 DELIMITER //
 CREATE  PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
 BEGIN

@@ -5,7 +5,7 @@ ENV REFRESHED_AT 2016-03-03 09:56
 
 #Version Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
 ENV YIHUONET_MCMS_SERIES general-1
-ENV YIHUONET_MCMS_VER 1.1.1
+ENV YIHUONET_MCMS_VER 1.1.2
 ENV YIHUONET_MCMS_FILENAME mcms-$YIHUONET_MCMS_SERIES-v$YIHUONET_MCMS_VER.zip
 ########################################
 # History  
