@@ -1,7 +1,7 @@
 #Base Define
 FROM daocloud.io/library/mysql:5.5
 MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
-ENV REFRESHED_AT 2016-01-28 13:27
+ENV REFRESHED_AT 2016-03-03 09:58
 
 #Version and sqlname Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
 # History  
