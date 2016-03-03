@@ -1140,6 +1140,7 @@ CREATE ALGORITHM=UNDEFINED  SQL SECURITY DEFINER VIEW `v_people_user` AS select 
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `p_getAllChildren`;
 
+DELIMITER //
 CREATE  PROCEDURE `p_getAllChildren`(`pId` int,`appId`int,`modelId` int)
 BEGIN
 	
@@ -1158,5 +1159,5 @@ BEGIN
   end while ;    
   INSERT tmp_category SELECT c.category_id,c.category_title,c.category_categoryid,0 FROM category  c WHERE c.category_id=pid and c.category_appid=appId and c.category_modelId=modelId;   
   SELECT * FROM tmp_category;
-END;;
-;
+END//
+DELIMITER ;
