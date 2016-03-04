@@ -28,6 +28,6 @@ RUN apt-get install -y wget unzip \
 	&& unzip $YIHUONET_MCMS_FILENAME \
 	&& rm -f $YIHUONET_MCMS_FILENAME \
     && cd $CATALINA_HOME/webapps \
-	&& mv manager management
+	&& rm -rf manager
 ADD tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
 
