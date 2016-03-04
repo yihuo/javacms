@@ -1,7 +1,7 @@
 #Base Define
 FROM tomcat:7-jre7
 MAINTAINER kai.zhu "kai.zhu@yihuonet.com"
-ENV REFRESHED_AT 2016-03-02 15:48
+ENV REFRESHED_AT 2016-03-04 15:47
 
 #Version Define - !!!!!!!!!!!!!!!MUST REVISE HERE FIRST!!!!!!!!!!!!!!!!!!!!!
 ENV YIHUONET_MCMS_SERIES general-2
