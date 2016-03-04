@@ -18,7 +18,7 @@ B.**Docker Compose YML**，内容安装代码模板（见下图红色框出区�
 附代码模板供使用：    
 
     program:
-      image: daocloud.io/yihuo/mcms-general-1
+      image: daocloud.io/yihuo/mcms-general-1:latest
       restart: always
       links:
       - db
@@ -32,7 +32,7 @@ B.**Docker Compose YML**，内容安装代码模板（见下图红色框出区�
       volumes:
       - /data/mcms-general-1/upload:/usr/local/tomcat/webapps/ROOT/upload
     db:
-      image: daocloud.io/yihuo/mcms-general-1-mysql
+      image: daocloud.io/yihuo/mcms-general-1-mysql:latest
       restart: always
       expose:
       - '3306'
