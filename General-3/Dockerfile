@@ -15,7 +15,7 @@ ENV YIHUONET_MCMS_FILENAME mcms-$YIHUONET_MCMS_SERIES-v$YIHUONET_MCMS_VER.zip
 
 #########################################[START]!Pause official code to deploy yihuonet code.
 ENV TOMCAT_ORIGIN_ROOT webapps/ROOT
-ENV MCMS_DOWNLOAD_FILE http://a.oss.yihuonet.com/program-base/mcms/$YIHUONET_MCMS_FILENAME
+ENV MCMS_DOWNLOAD_FILE http://us.oss.yihuonet.com/program-base/mcms/$YIHUONET_MCMS_FILENAME
 
 #Deploy AND Delete origin root directory
 WORKDIR $CATALINA_HOME/webapps
@@ -27,6 +27,6 @@ RUN apt-get install -y wget unzip \
 	&& unzip $YIHUONET_MCMS_FILENAME \
 	&& rm -f $YIHUONET_MCMS_FILENAME \
     && cd $CATALINA_HOME/webapps \
-	&& mv manager management
+	&& rm -rf manager
 ADD tomcat/conf/server.xml $CATALINA_HOME/conf/server.xml
 
